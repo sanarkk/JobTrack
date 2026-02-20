@@ -3,7 +3,6 @@ import {
     LayoutDashboard,
     FileText,
     MessageCircleMore,
-    Upload,
     LogOut,
     FileHeart,
 } from "lucide-react";
@@ -19,14 +18,6 @@ const SidePanel = () => {
         { label: "My Saved", icon: FileHeart, path: "/saved" },
         { label: "AI Assistant", icon: MessageCircleMore, path: "/ai-assistant" },
     ];
-
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            console.log("Selected file:", file);
-            //TODO send resume to backend
-        }
-    };
 
     const handleLogOut = () => {
         const isConfirmed = confirm("Are you sure that you want to log out?");
@@ -65,16 +56,6 @@ const SidePanel = () => {
             </div>
 
             <div className={styles.footer}>
-                <label className={styles.uploadLogoBtn}>
-                    <Upload size={20}/>
-                    <span>Upload Resume</span>
-                    <input
-                        type="file"
-                        hidden
-                        accept=".pdf,.doc,.docx"
-                        onChange={handleFileChange}
-                    />
-                </label>
                 <button onClick={handleLogOut} className={styles.logoutBtn}>
                     <LogOut size={20}/>
                     <span>Sign Out</span>
