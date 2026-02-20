@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./backend/Docker/Dockerfile
+    container_name: jobtrack_api
+    command: uvicorn main:app --host 0.0.0.0 --port 8001 --reload
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./backend/:/usr/src/backend
+    env_file:
+      - ./backend/.env
