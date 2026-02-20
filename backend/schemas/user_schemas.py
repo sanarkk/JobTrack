@@ -16,7 +16,7 @@ class UserCreate(BaseModel):
 
 
 class UserOut(UserBase):
-    id: str
+    id: int
     class Config:
         orm_mode = True
 
