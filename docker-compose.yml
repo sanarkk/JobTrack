@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: ./backend/Docker/Dockerfile
     container_name: jobtrack_api
-    command: uvicorn main:app --host 0.0.0.0 --port 8001 --reload
+    command: uvicorn backend.main:app --host 0.0.0.0 --port 8001 --reload
     ports:
       - "8001:8001"
     volumes:
