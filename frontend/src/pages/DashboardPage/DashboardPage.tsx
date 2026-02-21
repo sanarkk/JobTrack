@@ -4,6 +4,8 @@ import styles from "./DashboardPage.module.scss";
 import MatchedJobCard from "./MatchedJobCard/MatchedJobCard";
 import MatchedJobPopup from "./MatchedJobPopup/MatchedJobPopup";
 import axios from "axios";
+import { Search } from "lucide-react";
+
 
 interface MatchedJob {
     id: string;
@@ -125,10 +127,20 @@ const DashboardPage = () => {
                 <>
                     <div className={styles.content}>
                         <div className={styles.info}>
-                            <p className={styles.title}>Your Job Matches</p>
-                            <p className={styles.subTitle}>
-                                Personalized recommendations based on your resume and preferences
-                            </p>
+                            <div>
+                                <p className={styles.title}>Your Job Matches</p>
+                                <p className={styles.subTitle}>
+                                    Personalized recommendations based on your resume and preferences
+                                </p>
+                            </div>
+                            <div className={styles.searchWrapper}>
+                                <Search className={styles.searchIcon} size={18}/>
+                                <input
+                                    type="text"
+                                    placeholder="Search jobs..."
+                                    className={styles.searchInput}
+                                />
+                            </div>
                         </div>
                         {matchedJobs.length !== 0 ?
                             (
