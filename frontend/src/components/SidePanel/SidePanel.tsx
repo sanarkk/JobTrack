@@ -3,13 +3,14 @@ import {
     LayoutDashboard,
     FileText,
     MessageCircleMore,
-    Upload,
     LogOut,
     FileHeart,
 } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 
 const SidePanel = () => {
+
+    const navigate = useNavigate();
 
     const navItems = [
         { label: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
@@ -18,13 +19,14 @@ const SidePanel = () => {
         { label: "AI Assistant", icon: MessageCircleMore, path: "/ai-assistant" },
     ];
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            console.log("Selected file:", file);
-            //TODO send file to backend
+    const handleLogOut = () => {
+        const isConfirmed = confirm("Are you sure that you want to log out?");
+        if (isConfirmed) {
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("user_email");
+            navigate("/login");
         }
-    };
+    }
 
     return (
         <div className={styles.wrapper}>
@@ -54,20 +56,10 @@ const SidePanel = () => {
             </div>
 
             <div className={styles.footer}>
-                <label className={styles.uploadLogoBtn}>
-                    <Upload size={20}/>
-                    <span>Upload Resume</span>
-                    <input
-                        type="file"
-                        hidden
-                        accept=".pdf,.doc,.docx"
-                        onChange={handleFileChange}
-                    />
-                </label>
-                <NavLink to="/login" className={styles.logoutBtn}>
+                <button onClick={handleLogOut} className={styles.logoutBtn}>
                     <LogOut size={20}/>
                     <span>Sign Out</span>
-                </NavLink>
+                </button>
             </div>
         </div>
     );

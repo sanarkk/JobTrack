@@ -7,6 +7,7 @@ __pycache__/
 *.so
 
 .idea
+.DS_Store
 
 # Distribution / packaging
 .Python
@@ -212,3 +213,11 @@ __marimo__/
 .ml/datasets/
 .ml/samples/
 *.csv
+# Ignore datasets
+/ml/datasets/
+*.csv
+
+.ml/datasets/
+*.csv
+.ml/models/*.gguf
+*.gguf
