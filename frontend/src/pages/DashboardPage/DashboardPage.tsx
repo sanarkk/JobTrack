@@ -1,103 +1,52 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import NoResumePage from "./NoResumePage/NoResumePage";
 import styles from "./DashboardPage.module.scss";
 import MatchedJobCard from "./MatchedJobCard/MatchedJobCard.tsx";
 import MatchedJobPopup from "./MatchedJobPopup/MatchedJobPopup.tsx";
+import axios from "axios";
 
 interface MatchedJob {
-    title: string,
-    shortDescription: string,
-    companyName: string,
-    location: string,
-    onSite: boolean,
-    skills: string[],
-    salary: string,
-    matchRate: number,
+    id: string;
+    job_title: string;
+    job_category: string;
+    seniority_level: string;
+    requirements_summary: string;
+    technical_tools: string[];
+    formatted_workplace_location: string;
+    province: string;
+    commitment: string;
+    workplace_type: string;
+    yearly_min_compensation: number;
+    yearly_max_compensation: number;
+    company_name: string;
+    apply_url: string;
+    source_file: string;
+    hash: string;
 }
 
 const DashboardPage = () => {
-    const [hasResume, setHasResume] = useState(true);
+    const hasResume = true;
     const [selectedJob, setSelectedJob] = useState<MatchedJob | null>(null);
+    const [matchedJobs, setMatchedJobs] = useState<MatchedJob[]>([]);
 
+    useEffect(() => {
+        const fetchJobs = async () => {
+            try {
+                const res = await axios.get("http://localhost:8001/all/");
+                setMatchedJobs(res.data);
+            } catch(error) {
+                console.log(error);
+            }
+        }
 
-    const matchedJobs = [
-        {
-            title: "Senior Frontend Engineer",
-            shortDescription: "Build scalable web applications with modern frameworks",
-            companyName: "TechCorp",
-            location: "San Francisco, CA, USA",
-            onSite: false,
-            skills: ["React", "TypeScript", "SCSS", "Axios"],
-            salary: "$140k - $180k",
-            matchRate: 95
-        },
-        {
-            title: "Senior Frontend Engineer",
-            shortDescription: "Build scalable web applications with modern frameworks",
-            companyName: "TechCorp",
-            location: "San Francisco, CA, USA",
-            onSite: true,
-            skills: ["React", "TypeScript", "SCSS", "Axios"],
-            salary: "$140k - $180k",
-            matchRate: 90
-        },
-        {
-            title: "Senior Frontend Engineer",
-            shortDescription: "Build scalable web applications with modern frameworks",
-            companyName: "TechCorp",
-            location: "San Francisco, CA, USA",
-            onSite: false,
-            skills: ["React", "TypeScript", "SCSS", "Axios"],
-            salary: "$140k - $180k",
-            matchRate: 85
-        },
-        {
-            title: "Senior Frontend Engineer",
-            shortDescription: "Build scalable web applications with modern frameworks",
-            companyName: "TechCorp",
-            location: "San Francisco, CA, USA",
-            onSite: true,
-            skills: ["React", "TypeScript", "SCSS", "Axios"],
-            salary: "$140k - $180k",
-            matchRate: 75
-        },
-        {
-            title: "Senior Frontend Engineer",
-            shortDescription: "Build scalable web applications with modern frameworks",
-            companyName: "TechCorp",
-            location: "San Francisco, CA, USA",
-            onSite: false,
-            skills: ["React", "TypeScript", "SCSS", "Axios"],
-            salary: "$140k - $180k",
-            matchRate: 95
-        },
-        {
-            title: "Senior Frontend Engineer",
-            shortDescription: "Build scalable web applications with modern frameworks",
-            companyName: "TechCorp",
-            location: "San Francisco, CA, USA",
-            onSite: false,
-            skills: ["React", "TypeScript", "SCSS", "Axios"],
-            salary: "$140k - $180k",
-            matchRate: 95
-        },
-        {
-            title: "Senior Frontend Engineer",
-            shortDescription: "Build scalable web applications with modern frameworks",
-            companyName: "TechCorp",
-            location: "San Francisco, CA, USA",
-            onSite: false,
-            skills: ["React", "TypeScript", "SCSS", "Axios"],
-            salary: "$140k - $180k",
-            matchRate: 95
-        },
+        fetchJobs();
+    }, []);
 
-    ]
 
     return (
         <div className={styles.wrapper}>
             {!hasResume ? (
-                <NoResumePage onConfirm={() => setHasResume(true)} />
+                <NoResumePage />
             ) : (
                 <div className={styles.content}>
                     <div className={styles.info}>
