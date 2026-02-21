@@ -9,6 +9,7 @@ from sqlalchemy.orm import Session
 from backend.schemas.position_schema import PositionSchema
 from sqlalchemy import text
 from backend.database.session import get_db
+from backend.models.saved_position_model import SavedJob
 from backend.models.position_model import Position
 
 
