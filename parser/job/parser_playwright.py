@@ -108,7 +108,7 @@ if __name__ == "__main__":
 
     if jobs:
         filename = (
-            Path(__file__).resolve().parents[1]
+            Path(__file__).resolve().parents[2]
             / "data"
             / "raw"
             / f"{term.replace(' ', '_')}_jobs.json"
