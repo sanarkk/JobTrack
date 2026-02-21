@@ -1,8 +1,9 @@
 from pydantic import BaseModel
+from uuid import UUID
 from typing import Optional, List
 
 class PositionSchema(BaseModel):
-    id: Optional[str]
+    id: Optional[str|UUID]
     job_title: Optional[str]
     job_category: Optional[str]
     seniority_level: Optional[str]
