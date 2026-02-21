@@ -91,11 +91,9 @@ async def main(file: UploadFile = File(...)):
     # args = parser.parse_args()
     # resume_name = args.resume_file
     extension = Path(file.filename).suffix.lower()
-    print("I GOT HERE")
 
     BASE_DIR = Path(__file__).resolve().parents[2]
     UPLOAD_DIR = BASE_DIR / "data" / "resume_in"
-    UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
     ALLOWED_EXTENSIONS = {".pdf", ".docx"}
 
     if extension not in ALLOWED_EXTENSIONS:
@@ -115,6 +113,11 @@ async def main(file: UploadFile = File(...)):
 
     output_json = json.dumps(result, indent=2, ensure_ascii=False)
 
+    print(f"Saved normalized CV JSON to {out_dir / unique_name.resolve()}")
+    ingest_result = ingest_json_file(out_dir / unique_name)
+
+    print(f"Ingested resume JSON to Supabase: {ingest_result}")
+
     return output_json
 
     # out_path = out_dir / f"{resume_name}.json"
@@ -122,10 +125,6 @@ async def main(file: UploadFile = File(...)):
     # with open(out_path, "w", encoding="utf-8") as f:
     #     f.write(output_json)
 
-    print(f"Saved normalized CV JSON to {out_path.resolve()}")
-
-    ingest_result = ingest_json_file(out_path)
-    print(f"Ingested resume JSON to Supabase: {ingest_result}")
 
 if __name__ == "__main__":
     main()
