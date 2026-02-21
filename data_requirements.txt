@@ -21,12 +21,15 @@ markdown-it-py==4.0.0
 MarkupSafe==3.0.3
 mdurl==0.1.2
 numpy==2.4.2
+uvicorn
+fastapi
+python-multipart
 packaging==26.0
 pandas==3.0.1
 pathlib==1.0.1
 pdfminer==20191125
 playwright==1.58.0
-psycopg2==2.9.11
+psycopg2-binary
 pycryptodome==3.23.0
 pyee==13.0.1
 Pygments==2.19.2
