@@ -1,84 +1,30 @@
-# import os
-# import sys
-# import json
-
-# from sqlalchemy import create_engine, text
-
-# CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-# PROJECT_ROOT = os.path.abspath(os.path.join(CURRENT_DIR, ".."))
-# sys.path.insert(0, PROJECT_ROOT)
-# sys.path.insert(0, os.path.join(CURRENT_DIR, "pipelines"))
-
-# from backend.config import DATABASE_URL
-# from pipelines.pipeline import listingPipe, resumePipe, matchingPipe
-
-# engine = create_engine(DATABASE_URL)
-
-# def parse_skills(skills):
-#     try:
-#         return json.loads(skills)
-#     except:
-#         return [s.strip() for s in skills.split(",")]
-
-# if __name__ == "__main__":
-#     with engine.connect() as conn:
-
-#         resumes = conn.execute(
-#             text("SELECT * FROM candidate_resumes LIMIT 2")
-#         ).fetchall()
-        
-#         print(resumes)
-
-#         jobs = conn.execute(
-#             text("SELECT * FROM market_jobs LIMIT 2")
-#         ).fetchall()
-
-#         processed_resumes = []
-#         for r in resumes:
-#             resume_path = r[4]
-#             processed_resumes.append({
-#                 "resume_id": r[0],
-#                 "data": resumePipe(resume_path)
-#             })
-
-#         processed_jobs = []
-#         for j in jobs:
-#             title = j[1]
-#             skills = parse_skills(j[11])
-#             processed_jobs.append({
-#                 "job_id": j[0],
-#                 "data": listingPipe({
-#                     "title": title,
-#                     "skills": skills
-#                 })
-#             })
-
-#         for resume in processed_resumes:
-#             for job in processed_jobs:
-#                 match = matchingPipe(resume["data"], job["data"])
-#                 print(json.dumps({
-#                     "resume_id": resume["resume_id"],
-#                     "job_id": job["job_id"],
-#                     "resume": resume["data"],
-#                     "job": job["data"],
-#                     "match": match
-#                 }, indent=2))
-
-
-import os
-import sys
 import json
+import sys
+import uuid
+from pathlib import Path
+from backend.config import DATABASE_URL
+from .pipelines.pipeline import listingPipe, matchingPipe, resumePipe
+
 from sqlalchemy import create_engine, text
 
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.abspath(os.path.join(CURRENT_DIR, ".."))
-sys.path.insert(0, PROJECT_ROOT)
-sys.path.insert(0, os.path.join(CURRENT_DIR, "pipelines"))
+CURRENT_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = CURRENT_DIR.parent
+PIPELINES_DIR = CURRENT_DIR / "pipelines"
+MATCH_OUTPUT_DIR = PROJECT_ROOT / "data" / "match_data"
+MATCH_OUTPUT_FILE = MATCH_OUTPUT_DIR / "resume_job_matches.json"
 
-from backend.config import DATABASE_URL
-from pipelines.pipeline import listingPipe, resumePipe, matchingPipe
+project_root_str = str(PROJECT_ROOT)
+pipelines_dir_str = str(PIPELINES_DIR)
 
-import uuid
+if project_root_str not in sys.path:
+    sys.path.insert(0, project_root_str)
+if pipelines_dir_str not in sys.path:
+    sys.path.insert(0, pipelines_dir_str)
+
+
+
+engine = create_engine(DATABASE_URL)
+
 
 def to_serializable(obj):
     if isinstance(obj, uuid.UUID):
@@ -89,14 +35,37 @@ def to_serializable(obj):
         return [to_serializable(v) for v in obj]
     return obj
 
-engine = create_engine(DATABASE_URL)
 
 def normalize_skills(value):
-    if value is None:
-        return []
     if isinstance(value, list):
         return value
     return []
+
+
+def extract_matching_rate(match_result):
+    if isinstance(match_result, dict):
+        raw_score = match_result.get("matching_score")
+    else:
+        raw_score = match_result
+
+    try:
+        return float(raw_score)
+    except (TypeError, ValueError):
+        return 0.0
+
+
+def save_match_dataset(match_payloads):
+    MATCH_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    dataset = {
+        "saved_matches": len(match_payloads),
+        "matches": to_serializable(match_payloads),
+    }
+    MATCH_OUTPUT_FILE.write_text(
+        json.dumps(dataset, indent=2),
+        encoding="utf-8",
+    )
+    return MATCH_OUTPUT_FILE
+
 
 if __name__ == "__main__":
     with engine.connect() as conn:
@@ -108,36 +77,36 @@ if __name__ == "__main__":
             text("SELECT * FROM market_jobs LIMIT 50")
         ).fetchall()
 
-        processed_resumes = []
-        for r in resumes:
-            resume_dict = {
-                "skills": normalize_skills(r[10])
-            }
-            processed_resumes.append({
-                "resume_id": str(r[0]),
-                "data": resumePipe(resume_dict)
-            })
+        match_payloads = []
+        for resume_row in resumes:
+            resume_data = resumePipe(
+                {"skills": normalize_skills(resume_row[10])}
+            )
 
-        processed_jobs = []
-        for j in jobs:
-            title = j[1]
-            skills = normalize_skills(j[5])
-            processed_jobs.append({
-                "job_id": j[0],
-                "data": listingPipe({
-                    "title": title,
-                    "skills": skills
-                })
-            })
+            for job_row in jobs:
+                job_data = listingPipe(
+                    {
+                        "title": job_row[1],
+                        "skills": normalize_skills(job_row[5]),
+                    }
+                )
+                match_result = matchingPipe(resume_data, job_data)
 
-        for resume in processed_resumes:
-            for job in processed_jobs:
-                match = matchingPipe(resume["data"], job["data"])
-                print(json.dumps(
-                to_serializable({
-                    "resume_id": resume["resume_id"],
-                    "job_id": job["job_id"],
-                    "match": match
-                }),
-                indent=2
-            ))
+                payload = {
+                    "job_id": job_row[0],
+                    "user_gmail": str(resume_row[5] or "").strip(),
+                    "matching_rate": extract_matching_rate(match_result),
+                }
+                match_payloads.append(payload)
+
+    output_file = save_match_dataset(match_payloads)
+
+    print(
+        json.dumps(
+            {
+                "saved_matches": len(match_payloads),
+                "output_file": str(output_file),
+            },
+            indent=2,
+        )
+    )

@@ -51,7 +51,7 @@
 #     }
 
 import re
-from utils.matchSkillRate import match_skills_contextual
+from ml.utils.matchSkillRate import match_skills_contextual
 
 def clean_text(x):
     return re.sub(r"[^a-zA-Z0-9 +]", "", x).strip().lower()
