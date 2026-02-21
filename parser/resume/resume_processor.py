@@ -109,7 +109,8 @@ async def main(user_email: str = Form(...), file: UploadFile = File(...)):
     out_dir = Path(__file__).resolve().parents[2] / "data" / "resume_out"
     
     result = process_cv(in_dir / unique_name)
-
+    result["user_email"] = user_email
+    
     output_json = json.dumps(result, indent=2, ensure_ascii=False)
 
     out_path = out_dir / f"{unique_name}.json"
