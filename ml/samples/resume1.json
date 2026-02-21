@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "source": {
+    "file_name": "Oleksandr_Bratasyuk_Resume.docx",
+    "file_path": "C:/resumes/Oleksandr_Bratasyuk_Resume.docx",
+    "extension": ".docx"
+  },
+  "title": "Data Engineer",
+  "skills": [
+    "Python",
+    "SQL",
+    "ETL Pipelines",
+    "Airflow",
+    "AWS",
+    "Docker",
+    "Pandas",
+    "Spark",
+    "Data Modeling"
+  ]
+}

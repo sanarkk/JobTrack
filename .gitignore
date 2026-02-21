@@ -208,6 +208,7 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
-# Ignore datasets
-/ml/datasets/
+# Ignore datasets and samples
+.ml/datasets/
+.ml/samples/
 *.csv
