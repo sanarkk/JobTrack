@@ -5,7 +5,10 @@ from backend.dependencies.user_dependencies import get_user_by_email, create_use
 from backend.database.session import get_db
 from backend.models.candidate_model import CandidateResume
 from sqlalchemy.orm import Session
+from jose import jwt
+import time
 from backend.schemas.user_schemas import UserCreate, UserOut
+from backend.config import METABASE_SECRET_KEY
 
 router = APIRouter()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token/")
@@ -81,3 +84,16 @@ async def get_resume(token: str = Depends(oauth2_scheme), db: Session = Depends(
     }
 
     return resume_data
+
+
+@router.post("/generate_metabase_token/")
+async def generate_metabase_token():
+    payload = {
+        "resource": {"dashboard": 3},
+        "params": {},
+        "exp": int(time.time()) + (10 * 60)  # 10 minutes
+    }
+
+    token = jwt.encode(payload, METABASE_SECRET_KEY, algorithm="HS256")
+
+    return {"token": token}
