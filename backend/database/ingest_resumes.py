@@ -17,8 +17,10 @@ def ingest_json_file(json_path):
     source = payload.get("source", {})
     profile = payload.get("profile", {})
     summary = payload.get("summary", {})
+    user_email_ad = payload.get("user_email", {})
 
     resume = CandidateResume(
+        user_email=user_email_ad,
         file_name=source.get("file_name") or path.name,
         file_path=source.get("file_path") or str(path),
         extension=source.get("extension") or path.suffix,
