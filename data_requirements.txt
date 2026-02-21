@@ -20,6 +20,7 @@ llama_cpp_python==0.3.2
 markdown-it-py==4.0.0
 MarkupSafe==3.0.3
 mdurl==0.1.2
+llama-cpp-python
 numpy==2.4.2
 uvicorn
 fastapi
