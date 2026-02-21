@@ -45,6 +45,11 @@ def build_jobs_dataframe(raw_dir=DEFAULT_RAW_DIR):
         source_files.append(file_path)
 
     df = pd.DataFrame(rows)
+
+    df[["yearly_min_compensation", "yearly_max_compensation"]] = df[
+        ["yearly_min_compensation", "yearly_max_compensation"]
+    ].fillna(0)
+    
     return df, source_files
 
 
