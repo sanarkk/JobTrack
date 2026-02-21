@@ -3,7 +3,11 @@ import json
 from pathlib import Path
 
 from playwright.sync_api import sync_playwright
-
+from backend.database.ingest_jobs import (
+    build_jobs_dataframe,
+    ingest_dataframe_to_supabase,
+    move_raw_files_to_processed,
+)
 
 def scrape_hiring_cafe(search_term, n_of_jobs):
     """Scrapes Hiring.cafe for job listings via network interception"""
@@ -115,7 +119,19 @@ if __name__ == "__main__":
         )
         with open(filename, "w", encoding="utf-8") as f:
             json.dump(jobs, f, indent=2, ensure_ascii=False)
-
+        
         print(f"Saved {len(jobs)} jobs to {filename}")
+
+        df, source_files = build_jobs_dataframe()
+        summary = ingest_dataframe_to_supabase(df)
+        moved_files = move_raw_files_to_processed(source_files)
+
+        result = {
+            "dataframe_rows": len(df),
+            "ingestion": summary,
+            "moved_files": [str(p) for p in moved_files],
+        }
+        
+        print(result)
     else:
         print("No jobs found")
