@@ -3,7 +3,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sentence_transformers import SentenceTransformer, util
 
 vectorizer_a = TfidfVectorizer(lowercase=True, ngram_range=(1,2))
-model_b = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2", device='cuda')
+model_b = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2", device='cuda').half()
 
 def match_skills_train(resume_skills, job_skills):
     resume_text = " ".join(resume_skills)
@@ -30,7 +30,7 @@ def match_skills_contextual(resume_skills, job_skills):
         js_emb = model_b.encode(js, convert_to_tensor=True)
         best = 0
         for rs in resume_skills:
-            rs_emb = model_b.encode(rs, convert_to_tensor=True)
+            rs_emb = model_b.encode(rs, convert_to_tensor=True,  batch_size=1024)
             sim = float(util.cos_sim(js_emb, rs_emb)[0][0])
             best = max(best, sim)
         scores.append(best)

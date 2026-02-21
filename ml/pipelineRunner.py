@@ -101,11 +101,11 @@ def normalize_skills(value):
 if __name__ == "__main__":
     with engine.connect() as conn:
         resumes = conn.execute(
-            text("SELECT * FROM candidate_resumes LIMIT 2")
+            text("SELECT * FROM candidate_resumes LIMIT 1")
         ).fetchall()
 
         jobs = conn.execute(
-            text("SELECT * FROM market_jobs LIMIT 2")
+            text("SELECT * FROM market_jobs LIMIT 50")
         ).fetchall()
 
         processed_resumes = []
