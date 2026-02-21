@@ -1,26 +1,23 @@
 from pydantic import BaseModel
-from typing import Optional, List, Any
-from datetime import datetime
+from typing import Optional, List
 
 class PositionSchema(BaseModel):
-    id: str
-    search_term: Optional[str]
-    salary_min: Optional[str]
-    salary_max: Optional[str]
-    salary_mid: Optional[str]
-    core_job_title: Optional[str]
-    location: Optional[str]
-    date_posted: Optional[datetime]
-    description: Optional[str]
+    id: Optional[str]
+    job_title: Optional[str]
     job_category: Optional[str]
     seniority_level: Optional[str]
-    technical_tools: Optional[Any]
+    requirements_summary: Optional[str]
+    technical_tools: Optional[List[str]]
+    formatted_workplace_location: Optional[str]
+    province: Optional[str]
+    commitment: Optional[str]
     workplace_type: Optional[str]
-    company_industry: Optional[Any]
-    company_size: Optional[str]
-    company_sector_and_industry: Optional[str]
-    min_industry_and_role_yoe: Optional[str]
-    listed_compensation_currency: Optional[str]
+    yearly_min_compensation: Optional[float]
+    yearly_max_compensation: Optional[float]
+    company_name: Optional[str]
+    apply_url: Optional[str]
+    source_file: Optional[str]
+    hash: Optional[str]
 
     class Config:
         orm_mode = True
