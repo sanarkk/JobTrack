@@ -2,12 +2,13 @@ from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
 from pathlib import Path
 from fastapi.security import OAuth2PasswordBearer
 import uuid
+from sqlalchemy.dialects.postgresql import UUID
 import shutil
 from backend.dependencies.user_dependencies import get_email_from_token
 import requests
 from sqlalchemy.orm import Session
 from backend.schemas.position_schema import PositionSchema
-from sqlalchemy import text
+from sqlalchemy import text, cast
 from backend.database.session import get_db
 from backend.models.saved_position_model import SavedJob
 from backend.models.position_model import Position
@@ -88,7 +89,7 @@ def get_all_saved_jobs(
 
     saved_jobs = (
         db.query(SavedJob, Position)
-        .join(Position, SavedJob.job_id == Position.id)
+        .join(Position, cast(SavedJob.job_id, UUID) == Position.id)
         .filter(SavedJob.user_email == user_email)
         .all()
     )
@@ -98,7 +99,6 @@ def get_all_saved_jobs(
         result.append({
             "saved_id": str(saved_job.id),
             "job_id": str(position.id),
-            "user_email": saved_job.user_email,
             "job_title": position.job_title,
             "job_category": position.job_category,
             "seniority_level": position.seniority_level,
