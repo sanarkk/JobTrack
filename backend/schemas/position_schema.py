@@ -2,6 +2,12 @@ from pydantic import BaseModel
 from uuid import UUID
 from typing import Optional, List
 
+try:
+    from pydantic import ConfigDict  # pydantic v2
+except ImportError:  # pragma: no cover - pydantic v1 compatibility
+    ConfigDict = None
+
+
 class PositionSchema(BaseModel):
     id: Optional[str|UUID]
     job_title: Optional[str]
@@ -20,5 +26,12 @@ class PositionSchema(BaseModel):
     source_file: Optional[str]
     hash: Optional[str]
 
-    class Config:
-        orm_mode = True
+    if ConfigDict is not None:
+        model_config = ConfigDict(from_attributes=True)
+    else:  # pragma: no cover - pydantic v1 compatibility
+        class Config:
+            orm_mode = True
+
+
+class MatchedPositionSchema(PositionSchema):
+    matching_score: float

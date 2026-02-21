@@ -3,8 +3,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from backend.api.user_api import router as user_router
 from backend.api.chatbot_api import router as chatbot_router
 from backend.api.positions_api import router as positions_router
+from backend.config import ENABLE_MATCHED_POSITIONS
+from backend.services.matching_service import assert_model_ready
 
 app = FastAPI()
+
+if ENABLE_MATCHED_POSITIONS:
+    assert_model_ready()
 
 
 origins = [

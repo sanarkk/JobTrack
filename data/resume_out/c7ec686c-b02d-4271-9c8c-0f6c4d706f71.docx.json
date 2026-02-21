@@ -1,0 +1,83 @@
+{
+  "source": {
+    "file_name": "c7ec686c-b02d-4271-9c8c-0f6c4d706f71.docx",
+    "file_path": "C:\\Users\\nchud\\Projects\\JobTrack\\data\\resume_in\\c7ec686c-b02d-4271-9c8c-0f6c4d706f71.docx",
+    "extension": ".docx"
+  },
+  "profile": {
+    "name": "MYKOLA CHUDAK",
+    "email": "nchudak2004@gmail.com",
+    "mobile_number": "+1 (416) 717-9722",
+    "designation": "",
+    "total_experience": "",
+    "education": "{'designation': 'University of Manitoba, Taras Shevchenko National University of Kyiv', 'total_experience': '3.5, 3.6'}"
+  },
+  "skills": [
+    "Cloud & Data Engineering",
+    "Python",
+    "SQL",
+    "Java",
+    "Bash",
+    "C/C++",
+    "VBA",
+    "Pandas",
+    "Scikit-learn",
+    "R",
+    "CS Fundamentals"
+  ],
+  "company_names": [
+    "SIS LLC",
+    "SIS LLC",
+    "DataRoot Kyiv",
+    "Poznan",
+    "WP",
+    "Poland"
+  ],
+  "summary": {
+    "ai_summary": "I am a skilled Data Engineer with a strong background in cloud and data engineering. I have experience in leading end-to-end D365 Finance & Operations implementations, developing PySpark transformation scripts, and designing functional design documents. I also have experience in data science trainee roles, including machine learning projects and containerized ML applications.",
+    "ai_strengths": [
+      "Cloud & Data Engineering",
+      "Python",
+      "SQL",
+      "Java",
+      "Bash",
+      "C/C++",
+      "VBA",
+      "Pandas",
+      "Scikit-learn",
+      "R",
+      "CS Fundamentals"
+    ]
+  },
+  "experiences": [
+    {
+      "designation": "Lead Data Migration Engineer",
+      "company": "SIS LLC",
+      "start_date": "2024 - Present",
+      "end_date": "",
+      "job_description": "Led 4 end-to-end D365 Finance & Operations implementation projects for mid-size enterprises, acting as technical lead for data migration and analytics streams, from initial data assessment through go-live and hypercare. Built and orchestrated ELT pipelines using Azure Data Factory, Databricks (PySpark), and Logic Apps to ingest and transform large-scale datasets from Azure Data Lake. Migrated the internal Data Migration toolkit from Azure Data Factory & Databricks to Microsoft Fabric & Dataverse, modernizing the stack and simplifying the architecture. Enabled near real-time data access by implementing Dataverse-based Fabric Lakehouses, replacing legacy batch processing with continuous data availability."
+    },
+    {
+      "designation": "Data Migration Engineer",
+      "company": "SIS LLC",
+      "start_date": "2023 - 2024",
+      "end_date": "",
+      "job_description": "Developed PySpark transformation scripts and SQL logic to automate the extraction and cleansing of data for migration into D365 F&O. Integrated Azure Data Factory, Databricks, and Logic Apps to streamline ingestion, transformation, and loading processes."
+    },
+    {
+      "designation": "Data Migration Engineer",
+      "company": "SIS LLC",
+      "start_date": "2022 - 2023",
+      "end_date": "",
+      "job_description": "Collaborated with functional teams to redesign 4+ D365 F&O modules, including project forecasting tools and wage compliance reports—two of which were deployed via PowerApps and improved reporting turnaround. Designed end-to-end training materials for Project Management and Cost Accounting modules, accelerating user onboarding and post-ERP transition. Drafted Functional Design Documents for custom features, ensuring alignment with user requirements and development feasibility. Facilitated ERP user acceptance testing across multiple modules, identifying and documenting 50+ functional gaps."
+    },
+    {
+      "designation": "Data Science Trainee",
+      "company": "DataRoot Kyiv",
+      "start_date": "2023 - 2023",
+      "end_date": "",
+      "job_description": "Completed multiple machine learning projects using Python (NumPy, Pandas, SciPy, Matplotlib), focusing on both supervised and unsupervised learning techniques. Developed end-to-end ML pipelines including preprocessing, model training (Linear/Logistic Regression, KNN, SVM), and deployment via RESTful APIs using MVC architecture. Participated in 3 Kaggle competitions and containerized ML applications using Docker, improving deployment scalability and reproducibility for future experiments."
+    }
+  ],
+  "user_email": "string"
+}

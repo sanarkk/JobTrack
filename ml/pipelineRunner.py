@@ -15,10 +15,23 @@ from pipelines.pipeline import listingPipe, resumePipe, matchingPipe
 engine = create_engine(DATABASE_URL)
 
 def parse_skills(raw):
-    try:
-        return json.loads(raw)
-    except:
-        return [s.strip() for s in raw.split(",")]
+    if raw is None:
+        return []
+    if isinstance(raw, list):
+        return [str(skill).strip() for skill in raw if str(skill).strip()]
+    if isinstance(raw, tuple):
+        return [str(skill).strip() for skill in raw if str(skill).strip()]
+
+    if isinstance(raw, str):
+        try:
+            parsed = json.loads(raw)
+            if isinstance(parsed, list):
+                return [str(skill).strip() for skill in parsed if str(skill).strip()]
+        except Exception:
+            pass
+        return [s.strip() for s in raw.split(",") if s.strip()]
+
+    return []
 
 def load_resume_path():
     samples_dir = os.path.join(CURRENT_DIR, "samples")
@@ -30,11 +43,13 @@ if __name__ == "__main__":
     resume_processed = resumePipe(resume_path)
 
     with engine.connect() as conn:
-        rows = conn.execute(text("SELECT * FROM market_jobs LIMIT 10")).fetchall()
+        rows = conn.execute(
+            text("SELECT job_title, technical_tools FROM market_jobs LIMIT 10")
+        ).mappings().all()
 
         for posting in rows:
-            title = posting[1]
-            skills = parse_skills(posting[11])
+            title = posting.get("job_title") or ""
+            skills = parse_skills(posting.get("technical_tools"))
 
             listing_processed = listingPipe({
                 "title": title,

@@ -7,3 +7,5 @@ argon2-cffi
 python-jose
 python-multipart
 requests
+torch
+sentence-transformers
