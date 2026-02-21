@@ -1,0 +1,60 @@
+  .wrapper {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f8fafc;
+    padding: 40px 60px;
+  }
+
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .title {
+      font-size: 28px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .subTitle {
+      font-size: 16px;
+      color: #64748b;
+    }
+  }
+
+  .jobs {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .emptyState {
+    margin-top: 80px;
+    text-align: center;
+    color: #64748b;
+    font-size: 18px;
+  }
+
+  .deleteBtn {
+    background-color: #f87171;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s ease;
+
+    &:hover {
+      background-color: #ef4444;
+    }
+  }

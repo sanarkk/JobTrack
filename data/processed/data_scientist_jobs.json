@@ -1,0 +1,194 @@
+[
+  {
+    "id": "jazzhr___scene___job_20260219210909_UM9KZ8I2LR842TFB",
+    "board_token": "scene",
+    "source": "jazzhr",
+    "apply_url": "http://scene.applytojob.com/apply/8yvDsWoqS7/Data-Scientist",
+    "source_and_board_token": "jazzhr_scene",
+    "job_information": {
+      "title": "Data Scientist",
+      "job_title_raw": "Data Scientist",
+      "description": "<p style=\"line-height:1.2;margin-bottom:13px;\"><strong>Who we are</strong></p><p>At Scene+, we foster an entrepreneurial spirit that drives our mission: making tomorrow even more rewarding for our members. As a unique joint venture between Cineplex, Empire, and Scotiabank, and a network of partners, we have spent over 17 years delivering unparalleled rewards and experiences.</p><p>As we scale and evolve, our focus on innovation and technology is redefining what it means to be an iconic brand that prioritizes a member-centric experience. Data is not just a tool for us. It's the engine powering our growth strategy and our journey to becoming Canada&#8217;s most beloved loyalty program. We leverage it to provide personalized rewards and create meaningful connections with our members.</p><p>Joining Scene+ now means stepping into a role where your passion and skills can make a tangible impact on millions of members. With rewards for every lifestyle, we believe there&#8217;s always something to look forward to. Come be a part of our journey - create exceptional outcomes, collaborate across teams, and shape the future with us.</p><p><strong>Who we need</strong></p><p>Reporting to the Manager of Data Science, we are looking for a Data Scientist to help drive the development of cutting-edge machine learning models and big data analytics capabilities at Scene+. You will play a key role in data science, advanced analytics, and predictive modelling initiatives, addressing various stakeholder needs and business use cases. You will leverage our diverse cross-industry data and collaborate with the team to deliver insights and presentations that are clear and actionable for both technical and non-technical audiences.</p><p><em>This job posting is for an existing vacancy that is a full-time, hybrid role working three days per week on site in our Toronto office.&#160;</em></p><p><strong>What's in it for you</strong></p><p><em>Impact.</em> We are a data science driven company. Our customer database is one of Canada's largest and most complex, with data from dozens of partners and millions of members and their transactions. Your work will be all about the membership: understanding who they are, what they want and do not want. Your work will directly contribute to our growth by empowering our teams with the information they need to engage and delight members.</p><p><em>Exposure.</em> You will deepen your skills as you use our raw data and build machine learning models to further understand the millions of Canadians nationwide accessing our loyalty program. You will have the chance to work on an expansive array of projects, drawing on data from many different industries.&#160;</p><p><em>Professional development.</em> From leveraging the latest tools and technologies while contributing new ideas, you will be part of a team and an organization that values innovation and fresh perspectives. We have a proven history of supporting the growth of our people. You will work with a manager who nurtures a collaborative environment, enabling everyone to achieve exceptional results. Whether you want to deepen your expertise in machine learning and data modeling, explore another area of our business, or move to one of our parent companies, there is always something to look forward to.</p><p><strong>As our new Data Scientist, you w</strong>ill:</p><ul><li><strong>Build.</strong> You will work across the entire Machine Learning lifecycle, including data wrangling, feature engineering, model development, and deployment. Post-deployment, you will monitor the performance of models, interpret results, and derive insights for continuous model improvement.</li><li><strong>Solve.</strong> You will collaborate with business partners to identify opportunities for data science-driven solutions. Your role will involve conducting exploratory data analysis (EDA), and refining predictive models using advanced algorithms, and leveraging data visualization techniques to summarize critical insights. You will present these results to stakeholders, simplifying complex concepts into clear, actionable insights.</li><li><strong>Grow. </strong>You will research and stay current with the latest trends in data science technologies and methodologies, continuously bringing forward new ideas and approaches. You will challenge existing processes, driving improvement through data science-enhanced solutions.</li></ul><p><strong>You bring:</strong></p><ul><li><strong>The knowledge. </strong>You are a Data Scientist driven by curiosity and a passion for applying a strict scientific approach to find meaningful answers in the data. You have worked with big data sets and successfully built machine learning models. You have experience with structured and unstructured data and have worked at all stages of data science (problem definition, data acquisition and wrangling, modelling, and feature engineering and deployment). You have exposure to the Machine Learning lifecycle and statistical concepts.&#160;</li><li><strong>The technical skills. </strong>You can learn new tools independently and quickly. You are proficient in using one or more statistical programming languages (i.e., Python/Pyspark) for data science; have demonstrated experience writing complex SQL queries to extract and integrate data from multiple database sources; and have worked with open source libraries such as Kubernetes, Tensorflow, or PyTorch. You have worked with relational databases, big data platforms, data lakes (Databricks, Spark, Snowflake, or similar), and cloud infrastructure.</li><li><strong>The Interpersonal skills.</strong> You can nurture relationships across internal and external teams, gaining trust to influence decisions. You are open to sharing and receiving feedback and have the potential to lead the work of others. You have professional communication skills, including translating complex data science concepts and findings for different audiences and levels.&#160;&#160;</li></ul><p><strong>Compensation</strong></p><p>At Scene+, we believe that compensation should be transparent, fair, and market competitive. Our salary ranges are designed to represent the progression from learning the role to truly mastering it.&#160;</p><p>This role has a minimum base salary of $85K, and a maximum base salary of $110K. Our approach to compensation supports each person&#8217;s unique knowledge, skills, abilities, complexity of the role and balances it with internal equity to support a fair and competitive salary. The higher end of the range is reserved for those who have demonstrated deep expertise, while offers closer to the minimum reflect strong potential with room to develop.&#160;&#160;</p><p>Base salary is just one part of our total rewards package which also includes, health and wellness benefits, employer-matched RRSP savings, a performance-based bonus program, and many more perks including free movies and free grocery delivery!&#160;&#160;</p><p><strong>Join us.</strong></p><p>We are a dynamic and agile organization that works collaboratively to anticipate and meet the business needs of our partners and the lifestyle needs of our members. People who thrive at Scene+ are mission-driven and eager to contribute to a brand that&#8217;s shaping the future of loyalty. As part of our team, you will excel in an environment that values ownership and practical, intelligent solutions. You will have the chance to create and refine processes, identify and address challenges with scalable solutions, and introduce best practices that drive our success.</p><p><strong>Our values guide our work, and we consistently measure our progress against these principles</strong>.</p><ul><li>Member Focus: We prioritize the needs and experiences of our members in everything we do.</li><li>Teamwork: We believe in the power of collaboration and working together to achieve our goals.</li><li>Continuous Improvement: We strive for excellence by constantly seeking ways to improve and innovate.</li><li>Integrity: We uphold the highest standards of honesty and transparency in our actions.</li><li>Results Driven: We are committed to achieving outstanding outcomes and delivering value.</li><li>Passion: We are passionate about our work and dedicated to making a positive impact.</li></ul><p><strong>What you can expect from our interview process:</strong></p><ul><li>A virtual interview with a Talent Advisor discussing your interest in the role and the company. The conversation will be recorded using BrightHire, an AI-powered video interview tool. More details will be shared when you are invited to interview.</li><li>A virtual technical assessment led by a Data Scientist on our team.</li><li>A virtual interview with the Manager, Data Science to share your experience and discuss how you will work with the team.</li><li>A virtual interview with the Director, Data Science to expand on how your work with the Data Science team will support the mission and growth of Scene+.</li></ul><p><strong>Apply now.</strong></p><p>If you have 70% of what we're looking for and 100% authenticity and passion, express your interest here. Please contact us by email at careers@scene.ca and let us know what accommodations or assistance we can provide you during the application process.</p><p>At Scene+, we're committed to diversity, equity, and inclusion. We strive to integrate these values into everything we do, from our partners and offers to our teams and interactions. We welcome and appreciate candidates from diverse backgrounds, including women, persons with disabilities, Black, Indigenous and People of Colour (BIPOC), the LGBTQ2SIA+ community, and other equity-seeking groups.</p><p><strong>How we use AI in our interview process:</strong></p><p>At this time, we do not use artificial intelligence (AI) tools to screen, assess or select applicants. For video interviews, we may use BrightHire, an AI-powered video interview tool, for recording purposes.</p><p style=\"line-height:1.2;margin-bottom:13px;\"></p><p style=\"line-height:1.2;margin-bottom:13px;\">#LI-Hybrid<br>#LI-DNI</p>",
+      "viewedByUsers": [
+        "mi011viQLEg4q65AGc56ij14q083",
+        "oS72fMLI6od8Q7uugWmtzCxCqH22"
+      ],
+      "appliedFromUsers": [
+        "oS72fMLI6od8Q7uugWmtzCxCqH22"
+      ],
+      "company_info": {
+        "name": "Scene+"
+      }
+    },
+    "v5_processed_job_data": {
+      "core_job_title": "Data Scientist",
+      "requirements_summary": "Data Scientist with experience in machine learning, data wrangling, SQL, and cloud-based data platforms; strong communication for cross-functional audiences.",
+      "technical_tools": [
+        "Python",
+        "PySpark",
+        "SQL",
+        "Kubernetes",
+        "TensorFlow",
+        "PyTorch",
+        "Databricks",
+        "Spark",
+        "Snowflake",
+        "Cloud"
+      ],
+      "licenses_or_certifications": [],
+      "associates_degree_requirement": "Not Mentioned",
+      "associates_degree_fields_of_study": [],
+      "bachelors_degree_requirement": "Not Mentioned",
+      "bachelors_degree_fields_of_study": [],
+      "masters_degree_requirement": "Not Mentioned",
+      "masters_degree_fields_of_study": [],
+      "doctorate_degree_requirement": "Not Mentioned",
+      "doctorate_degree_fields_of_study": [],
+      "licenses_or_certifications_not_mentioned": true,
+      "min_industry_and_role_yoe": 3,
+      "401k_matching": false,
+      "is_min_industry_and_role_yoe_not_mentioned": false,
+      "min_management_and_leadership_yoe": null,
+      "is_min_management_and_leadership_yoe_not_mentioned": true,
+      "job_category": "Data and Analytics",
+      "role_activities": [
+        "Build models",
+        "Analyze data",
+        "Present results"
+      ],
+      "commitment": [
+        "Full Time"
+      ],
+      "role_type": "Individual Contributor",
+      "seniority_level": "Mid Level",
+      "workplace_countries": [
+        "CA"
+      ],
+      "boundless_workplace_states": [],
+      "boundless_workplace_countries": [],
+      "boundless_workplace_continents": [],
+      "workplace_continents": [
+        "North America"
+      ],
+      "workplace_states": [
+        "Ontario, CA"
+      ],
+      "workplace_cities": [
+        "Toronto, Ontario, CA"
+      ],
+      "workplace_counties": [
+        "Ontario County, Ontario, CA"
+      ],
+      "workplace_type": "Hybrid",
+      "workplace_physical_environment": "Office",
+      "oral_communication_level": "High",
+      "physical_labor_intensity": "Low",
+      "physical_position": "Sitting",
+      "computer_usage": "High",
+      "cognitive_demand": "High",
+      "air_travel_requirement": "None",
+      "land_travel_requirement": "None",
+      "morning_shift_work": "Not Indicated",
+      "evening_shift_work": "Not Indicated",
+      "overnight_work": "Not Indicated",
+      "formatted_workplace_location": "Toronto, Ontario, Canada",
+      "on_call_requirement": "None",
+      "weekend_availability_required": false,
+      "holiday_availability_required": false,
+      "generous_paid_time_off": false,
+      "four_day_work_week": false,
+      "overtime_required": false,
+      "is_workplace_worldwide_ok": false,
+      "language_requirements": [
+        "English"
+      ],
+      "num_language_requirements": 1,
+      "number_of_workplace_cities": 1,
+      "number_of_workplace_counties": 1,
+      "number_of_workplace_states": 1,
+      "number_of_workplace_countries": 1,
+      "number_of_workplace_continents": 1,
+      "yearly_max_compensation": 110000,
+      "yearly_min_compensation": 85000,
+      "monthly_max_compensation": 9166.666666666666,
+      "monthly_min_compensation": 7083.333333333333,
+      "weekly_max_compensation": 2115.3846153846152,
+      "weekly_min_compensation": 1634.6153846153845,
+      "hourly_max_compensation": 52.88461538461539,
+      "hourly_min_compensation": 40.86538461538461,
+      "bi-weekly_min_compensation": 3269.230769230769,
+      "bi-weekly_max_compensation": 4230.7692307692305,
+      "daily_min_compensation": 326.9230769230769,
+      "daily_max_compensation": 423.0769230769231,
+      "estimated_publish_date": "2026-02-19T00:00:00.000Z",
+      "estimated_publish_date_millis": 1771459200000,
+      "fair_chance": false,
+      "visa_sponsorship": false,
+      "relocation_assistance": false,
+      "military_veterans": false,
+      "tuition_reimbursement": false,
+      "retirement_plan": false,
+      "generous_parental_leave": false,
+      "is_high_school_required": false,
+      "is_driver_license_required": false,
+      "is_compensation_transparent": true,
+      "listed_compensation_currency": "CAD",
+      "listed_compensation_frequency": "Yearly",
+      "security_clearance": "None",
+      "position_employer_type": "External Position",
+      "company_name": "Scene+",
+      "company_website": "sceneplus.ca",
+      "company_sector_and_industry": "Retail and Wholesale",
+      "company_activities": [
+        "loyalty program",
+        "data analytics"
+      ],
+      "company_tagline": "Loyalty program and rewards company"
+    },
+    "enriched_company_data": {
+      "enriched_at": "2026-02-16T07:55:03.584Z",
+      "status": "VALID_COMPANY",
+      "name": "Scene+",
+      "homepage_uri": "sceneplus.ca",
+      "hq_country": "CA",
+      "parent_company": "Cineplex, Scotiabank, and Empire Company",
+      "subsidiaries": [
+        "Scene Plus IP Corporation"
+      ],
+      "industries": [
+        "Loyalty Programs",
+        "Marketing Services"
+      ],
+      "activities": [
+        "Customer loyalty programs",
+        "Rewards platform management",
+        "Data marketing services",
+        "Consumer behavior analytics",
+        "Strategic retail partnerships"
+      ],
+      "nb_employees": 120,
+      "year_founded": 2007,
+      "tagline": "Canadian loyalty program offering rewards for diverse lifestyle categories.",
+      "organization_type": "Private",
+      "latest_funding_investors": [
+        "Empire Company"
+      ],
+      "latest_funding_type": "Corporate Round",
+      "latest_funding_year": 2022,
+      "latest_funding_amount": 0,
+      "stock_exchange": null,
+      "stock_symbol": null
+    },
+    "_geoloc": [
+      {
+        "lat": 43.6532,
+        "lon": -79.3832
+      }
+    ],
+    "original_source_id": "job_20260219210909_UM9KZ8I2LR842TFB",
+    "requisition_id": "66iy8wbhi1koh9u7",
+    "collapse_key": "ccf810719bd842782bebaf0e9c713d55db74ac02f237fb9d4dd0cba9f427d830",
+    "is_expired": false,
+    "objectID": "jazzhr___scene___job_20260219210909_UM9KZ8I2LR842TFB"
+  }
+]
