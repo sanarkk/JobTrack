@@ -5,7 +5,7 @@ from typing import Optional, List, Dict, Any
 
 class CandidateResumeSchema(BaseModel):
     id: Optional[str | UUID]
-    user_id: Optional[str | UUID]
+    user_email: Optional[str | UUID]
 
     file_name: str
     file_path: Optional[str]
