@@ -7,10 +7,11 @@ import shutil
 from backend.dependencies.user_dependencies import get_email_from_token
 import requests
 from sqlalchemy.orm import Session
-from backend.schemas.position_schema import PositionSchema
-from sqlalchemy import text, cast, exists
+from backend.schemas.position_schema import PositionSchema, PositionSchemaMatching
+from sqlalchemy import text, cast, exists, desc
 from backend.database.session import get_db
 from backend.models.saved_position_model import SavedJob
+from backend.models.job_match_model import ResumeJobMatch
 from backend.models.candidate_model import CandidateResume
 from backend.models.position_model import Position
 
@@ -29,6 +30,35 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 @router.get("/all", response_model=list[PositionSchema])
 async def get_all_positions(db: Session = Depends(get_db)):
     return db.query(Position).limit(10).all()
+
+
+@router.get("/get_relevant_positions", response_model=list[PositionSchemaMatching])
+async def get_relevant_positions(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
+    user_email = get_email_from_token(token)
+
+    user_email = "nchudak2004@gmail.com"
+
+    results = (
+        db.query(Position, ResumeJobMatch.matching_rate)
+        .join(
+            ResumeJobMatch,
+            cast(ResumeJobMatch.job_id, UUID) == Position.id
+        )
+        .filter(ResumeJobMatch.user_gmail == user_email)
+        .order_by(desc(ResumeJobMatch.matching_rate))
+        .limit(50)
+        .all()
+    )
+
+    response = []
+    for position, matching_rate in results:
+        position_dict = position.__dict__.copy()
+        position_dict.pop("_sa_instance_state", None)
+        position_dict["matching_rate"] = matching_rate
+        response.append(position_dict)
+
+    return response
+
 
 
 @router.post("/upload_resume")
