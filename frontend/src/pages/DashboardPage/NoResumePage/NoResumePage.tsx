@@ -1,33 +1,51 @@
 import styles from './NoResumePage.module.scss';
 import { Upload } from "lucide-react";
+import axios from "axios";
+import { useState } from "react";
+
+interface StatInfoItem {
+    metric: string;
+    description: string;
+}
 
 const NoResumePage = () => {
+    const [uploading, setUploading] = useState(false);
 
-    interface statInfoItem {
-        metric: string;
-        description: string;
-    }
-
-    const statsInfo: statInfoItem[] = [
-        {
-            metric: "AI-Powered",
-            description: "Start matching"
-        },
-        {
-            metric: "1000+",
-            description: "Active Jobs"
-        },
-        {
-            metric: "95%",
-            description: "Match Accuracy"
-        },
+    const statsInfo: StatInfoItem[] = [
+        { metric: "AI-Powered", description: "Smart Matching" },
+        { metric: "1000+", description: "Active Jobs" },
+        { metric: "95%", description: "Match Accuracy" },
     ];
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
-        if (file) {
-            console.log("Selected file:", file);
-            //send file to backend to change the page layout
+        if (!file) return;
+
+        try {
+            setUploading(true);
+
+            const formData = new FormData();
+            formData.append("file", file);
+
+            await axios.post(
+                "http://0.0.0.0:8001/upload_resume",
+                formData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${
+                            localStorage.getItem("access_token") || ""
+                        }`,
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+            );
+
+            window.location.reload();
+
+        } catch (error) {
+            console.error("Resume upload failed:", error);
+        } finally {
+            setUploading(false);
         }
     };
 
@@ -43,34 +61,29 @@ const NoResumePage = () => {
                 </p>
 
                 <p className={styles.text}>
-                    Upload your resume to unlock AI-powered job recommendations tailored specifically to your skills,
-                    experience, and career goals. Our intelligent matching system analyzes thousands of opportunities to
-                    find the best fits for you.
+                    Upload your resume to unlock AI-powered job recommendations
+                    tailored specifically to your skills and experience.
                 </p>
-
 
                 <label className={styles.uploadLogoBtn}>
                     <Upload size={24}/>
-                    Upload Your Resume
+                    {uploading ? "Uploading..." : "Upload Your Resume"}
+
                     <input
                         type="file"
                         hidden
                         accept=".pdf,.doc,.docx"
                         onChange={handleFileChange}
+                        disabled={uploading}
                     />
                 </label>
-
             </div>
 
             <div className={styles.stats}>
                 {statsInfo.map((stat) => (
                     <div key={stat.metric} className={styles.stat}>
-                        <p className={styles.metric}>
-                            {stat.metric}
-                        </p>
-                        <p className={styles.description}>
-                            {stat.description}
-                        </p>
+                        <p className={styles.metric}>{stat.metric}</p>
+                        <p className={styles.description}>{stat.description}</p>
                     </div>
                 ))}
             </div>

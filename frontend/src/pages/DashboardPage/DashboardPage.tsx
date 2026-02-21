@@ -25,13 +25,42 @@ interface MatchedJob {
 }
 
 const DashboardPage = () => {
-    const hasResume = true;
-
+    const [hasResume, setHasResume] = useState<boolean | null>(null);
     const [selectedJob, setSelectedJob] = useState<MatchedJob | null>(null);
     const [matchedJobs, setMatchedJobs] = useState<MatchedJob[]>([]);
     const [savedJobIds, setSavedJobIds] = useState<string[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        const checkResumeExists = async () => {
+            try {
+                const res = await axios.post(
+                    "http://0.0.0.0:8001/resume_exists/",
+                    {},
+                    {
+                        headers: {
+                            Authorization: `Bearer ${
+                                localStorage.getItem("access_token") || ""
+                            }`,
+                        },
+                    }
+                );
+
+                setHasResume(res.data.exists);
+            } catch (error) {
+                console.log("Resume exists check failed:", error);
+                setHasResume(false);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        checkResumeExists();
+    }, []);
+
+    useEffect(() => {
+        if (!hasResume) return;
+
         const fetchJobs = async () => {
             try {
                 const res = await axios.get("http://localhost:8001/all/");
@@ -42,9 +71,11 @@ const DashboardPage = () => {
         };
 
         fetchJobs();
-    }, []);
+    }, [hasResume]);
 
     useEffect(() => {
+        if (!hasResume) return;
+
         const fetchSavedJobs = async () => {
             try {
                 const res = await axios.get(
@@ -59,8 +90,6 @@ const DashboardPage = () => {
                 );
 
                 const ids = [...new Set(res.data.map((job: any) => job.job_id))];
-
-                // @ts-ignore
                 setSavedJobIds(ids);
             } catch (error) {
                 console.log(error);
@@ -68,50 +97,55 @@ const DashboardPage = () => {
         };
 
         fetchSavedJobs();
-    }, []);
-
+    }, [hasResume]);
 
     const handleSaveSuccess = (jobId: string) => {
         setSavedJobIds((prev) => [...prev, jobId]);
     };
+
+    if (loading) {
+        return <div className={styles.wrapper}>Loading...</div>;
+    }
 
     return (
         <div className={styles.wrapper}>
             {!hasResume ? (
                 <NoResumePage />
             ) : (
-                <div className={styles.content}>
-                    <div className={styles.info}>
-                        <p className={styles.title}>Your Job Matches</p>
-                        <p className={styles.subTitle}>
-                            Personalized recommendations based on your resume and preferences
-                        </p>
+                <>
+                    <div className={styles.content}>
+                        <div className={styles.info}>
+                            <p className={styles.title}>Your Job Matches</p>
+                            <p className={styles.subTitle}>
+                                Personalized recommendations based on your resume and preferences
+                            </p>
+                        </div>
+
+                        <div className={styles.matchedJobs}>
+                            {matchedJobs.map((job, index) => (
+                                <MatchedJobCard
+                                    key={job.id}
+                                    job={job}
+                                    index={index}
+                                    isSaved={savedJobIds.includes(job.id)}
+                                    variant="dashboard"
+                                    onSaveSuccess={handleSaveSuccess}
+                                    onViewDetails={() => setSelectedJob(job)}
+                                />
+                            ))}
+                        </div>
                     </div>
 
-                    <div className={styles.matchedJobs}>
-                        {matchedJobs.map((job, index) => (
-                            <MatchedJobCard
-                                key={job.id}
-                                job={job}
-                                index={index}
-                                isSaved={savedJobIds.includes(job.id)}
-                                variant="dashboard"
-                                onSaveSuccess={handleSaveSuccess}
-                                onViewDetails={() => setSelectedJob(job)}
-                            />
-                        ))}
-                    </div>
-                </div>
-            )}
-
-            {selectedJob && (
-                <MatchedJobPopup
-                    job={selectedJob}
-                    variant="dashboard"
-                    isSaved={savedJobIds.includes(selectedJob.id)}
-                    onSave={() => handleSaveSuccess(selectedJob.id)}
-                    onClose={() => setSelectedJob(null)}
-                />
+                    {selectedJob && (
+                        <MatchedJobPopup
+                            job={selectedJob}
+                            variant="dashboard"
+                            isSaved={savedJobIds.includes(selectedJob.id)}
+                            onSave={() => handleSaveSuccess(selectedJob.id)}
+                            onClose={() => setSelectedJob(null)}
+                        />
+                    )}
+                </>
             )}
         </div>
     );

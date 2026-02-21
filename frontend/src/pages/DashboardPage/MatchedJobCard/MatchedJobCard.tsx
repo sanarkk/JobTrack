@@ -100,13 +100,11 @@ const MatchedJobCard = ({
               <MapPin size={14}/>
                             {job.formatted_workplace_location}
             </span>
-
                         <span className={styles.onSite}>
               {job.workplace_type}
             </span>
                     </div>
                 </div>
-
                 <div className={styles.salarySection}>
                     <p className={styles.salaryText}>Salary range</p>
                     <p className={styles.salary}>
