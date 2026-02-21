@@ -19,6 +19,7 @@ interface MatchedJobPopupProps {
         yearly_max_compensation: number;
         company_name: string;
         apply_url: string;
+        matching_rate: number;
         source_file: string;
         hash: string;
     };
@@ -87,19 +88,27 @@ const MatchedJobPopup = ({
                         <div className={styles.info}>
                             <div className={styles.titleInfo}>
                                 <span className={styles.title}>{job.job_title}</span>
-                                <span className={styles.matchRate}>
-                  <TrendingUp size={20} /> 95% match
-                </span>
+                                {variant === "saved" ? "" : (<span
+                                    className={`${styles.matchRate} ${
+                                        job.matching_rate >= 90
+                                            ? styles.high
+                                            : job.matching_rate >= 80
+                                                ? styles.medium
+                                                : styles.low
+                                    }`}
+                                >
+                        {Math.floor(job.matching_rate)}% match
+                        </span>)}
                             </div>
 
                             <div className={styles.companyInfo}>
                                 <span className={styles.companyName}>{job.company_name}</span>
                                 <span className={styles.location}>
-                  <MapPin size={14} /> {job.formatted_workplace_location}
+                  <MapPin size={14}/> {job.formatted_workplace_location}
                 </span>
                                 <span className={styles.onSite}>{job.workplace_type}</span>
                             </div>
-                            <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+                            <div style={{display: "flex", gap: 12, alignItems: "center" }}>
                 <span className={styles.workType}>
                   <Briefcase size={20} /> {job.commitment.replace(/[{}"]/g, "")}
                 </span>
