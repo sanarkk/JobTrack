@@ -1,0 +1,167 @@
+.job {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid #dfe4ea;
+  transition: all 300ms ease;
+
+  .mainInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .info {
+      .titleInfo {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+
+        .title {
+          font-size: 20px;
+          font-weight: 600;
+          color: #0f172a;
+        }
+
+        .matchRate {
+          font-size: 14px;
+          font-weight: 500;
+          color: #008236;
+          background-color: #dcfce7;
+          padding: 6px 10px;
+          border-radius: 16px;
+        }
+      }
+
+      .companyInfo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 8px;
+
+        .companyName {
+          font-size: 16px;
+          color: #45556c;
+        }
+
+        .location {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          font-size: 14px;
+          color: #45556c;
+        }
+
+        .onSite {
+          font-size: 12px;
+          color: #1d4ed8;
+          background-color: #eff6ff;
+          padding: 4px 8px;
+          border-radius: 16px;
+        }
+      }
+    }
+
+    .salarySection {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+
+      .salaryText {
+        font-size: 14px;
+        color: #45556c;
+      }
+
+      .salary {
+        font-size: 18px;
+        color: #0f172a;
+        font-weight: 600;
+      }
+    }
+  }
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+
+    .description {
+      font-size: 16px;
+      color: #45556c;
+    }
+
+    .skills {
+      display: flex;
+      gap: 12px;
+
+      .skill {
+        padding: 4px 12px;
+        background-color: #f1f5f9;
+        color: #334155;
+        font-size: 14px;
+        font-weight: 500;
+        border-radius: 8px;
+      }
+    }
+  }
+
+  .btns {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 12px;
+
+    .detailsBtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 80%;
+      gap: 8px;
+      background: linear-gradient(to right, #2563eb, #4f46e5);
+      color: #ffffff;
+      border: none;
+      outline: none;
+      padding: 16px 16px;
+      font-size: 16px;
+      border-radius: 16px;
+      font-weight: 500;
+      box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3), 0 4px 6px -2px rgba(37, 99, 235, 0.3);
+      transition: 0.2s ease;
+      cursor: pointer;
+
+      &:hover {
+        background: linear-gradient(to right, #1d4ed8, #4338ca);
+      }
+    }
+
+    .saveBtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex: 0 0 19%;
+      padding: 10px 16px;
+      border: 1px solid #e2e8f0;
+      color: #334155;
+      font-weight: 500;
+      border-radius: 12px;
+      transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f8fafc;
+        border-color: #d1d5db;
+      }
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+    border-color: #bfdbfe;
+  }
+}
+

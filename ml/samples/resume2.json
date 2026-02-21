@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "source": {
+    "file_name": "Jane_Doe_ML_Engineer.pdf",
+    "file_path": "C:/resumes/Jane_Doe_ML_Engineer.pdf",
+    "extension": ".pdf"
+  },
+  "title": "Machine Learning Engineer",
+  "skills": [
+    "Python",
+    "TensorFlow",
+    "PyTorch",
+    "Machine Learning",
+    "Deep Learning",
+    "SQL",
+    "Data Engineering",
+    "MLOps",
+    "Docker",
+    "Kubernetes"
+  ]
+}

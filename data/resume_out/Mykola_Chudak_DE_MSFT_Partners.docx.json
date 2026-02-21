@@ -28,11 +28,13 @@
   "company_names": [
     "SIS LLC",
     "SIS LLC",
-    "SIS LLC",
-    "DataRoot"
+    "DataRoot Kyiv",
+    "Poznan",
+    "WP",
+    "Poland"
   ],
   "summary": {
-    "ai_summary": "I am a skilled Data Engineer with a strong background in cloud and data engineering. I have experience in leading end-to-end D365 Finance & Operations implementations, developing PySpark transformation scripts, and designing functional design documents. I also have experience in data migration, project management, and machine learning.",
+    "ai_summary": "I am a skilled Data Engineer with a strong background in cloud and data engineering. I have experience in leading end-to-end D365 Finance & Operations implementations, developing PySpark transformation scripts, and designing functional design documents. I also have experience in data science trainee roles, including machine learning projects and containerized ML applications.",
     "ai_strengths": [
       "Cloud & Data Engineering",
       "Python",
@@ -71,7 +73,7 @@
     },
     {
       "designation": "Data Science Trainee",
-      "company": "DataRoot",
+      "company": "DataRoot Kyiv",
       "start_date": "2023 - 2023",
       "end_date": "",
       "job_description": "Completed multiple machine learning projects using Python (NumPy, Pandas, SciPy, Matplotlib), focusing on both supervised and unsupervised learning techniques. Developed end-to-end ML pipelines including preprocessing, model training (Linear/Logistic Regression, KNN, SVM), and deployment via RESTful APIs using MVC architecture. Participated in 3 Kaggle competitions and containerized ML applications using Docker, improving deployment scalability and reproducibility for future experiments."

@@ -1,21 +1,21 @@
-import os
+from pathlib import Path
 from huggingface_hub import hf_hub_download
 
 def download_model():
     repo_id = "Qwen/Qwen2.5-1.5B-Instruct-GGUF"
     filename = "qwen2.5-1.5b-instruct-q4_k_m.gguf"
     
-    # Path relative to the script
-    model_dir = os.path.join(os.getcwd())
-    model_path = os.path.join(model_dir, filename)
+    # Always save next to this script (ml/models)
+    model_dir = Path(__file__).resolve().parent
+    model_path = model_dir / filename
         
-    if not os.path.exists(model_path):
+    if not model_path.exists():
         print(f"Downloading {filename} from {repo_id}...")
         try:
             hf_hub_download(
                 repo_id=repo_id, 
                 filename=filename, 
-                local_dir=model_dir, 
+                local_dir=str(model_dir), 
                 local_dir_use_symlinks=False
             )
             print("Download complete!")
