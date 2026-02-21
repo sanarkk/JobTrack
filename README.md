@@ -55,7 +55,7 @@ These challenges refined the architecture and strengthened the system.
 - Use embeddings for deeper semantic matching
 - Deploy as a real-time API for job platforms  
 
-JobTrack is ready to evolve into a **full intelligent hiring assistant**.
+JobTrack is ready to evolve into a full intelligent job hunt assistant.
 
 ---
 
