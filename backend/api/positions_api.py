@@ -8,9 +8,10 @@ from backend.dependencies.user_dependencies import get_email_from_token
 import requests
 from sqlalchemy.orm import Session
 from backend.schemas.position_schema import PositionSchema
-from sqlalchemy import text, cast
+from sqlalchemy import text, cast, exists
 from backend.database.session import get_db
 from backend.models.saved_position_model import SavedJob
+from backend.models.candidate_model import CandidateResume
 from backend.models.position_model import Position
 
 
@@ -142,3 +143,13 @@ def delete_saved_job(
     db.commit()
 
     return {"message": "Saved job deleted successfully", "id": str(saved_job.id)}
+
+
+
+@router.post("/resume_exists/")
+async def resume_exists(token: str = Depends(oauth2_scheme),db: Session = Depends(get_db)):
+    user_email = get_email_from_token(token)
+
+    resume_found = db.query(exists().where(CandidateResume.user_email == user_email)).scalar()
+
+    return {"exists": resume_found}
