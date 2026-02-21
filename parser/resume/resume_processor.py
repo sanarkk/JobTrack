@@ -11,7 +11,6 @@ from .text_from_file import extract_text_by_file_type
 
 parser_router = APIRouter()
 
-
 def _as_list(value):
     if value is None:
         return []
@@ -110,7 +109,7 @@ async def main(user_email: str = Form(...), file: UploadFile = File(...)):
     
     result = process_cv(in_dir / unique_name)
     result["user_email"] = user_email
-    
+
     output_json = json.dumps(result, indent=2, ensure_ascii=False)
 
     out_path = out_dir / f"{unique_name}.json"

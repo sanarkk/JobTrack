@@ -1,0 +1,49 @@
+{
+  "source": {
+    "file_name": "60bbd5c4-677f-430e-9f97-5ab68b6c76f1.pdf",
+    "file_path": "C:\\Users\\nchud\\Projects\\JobTrack\\data\\resume_in\\60bbd5c4-677f-430e-9f97-5ab68b6c76f1.pdf",
+    "extension": ".pdf"
+  },
+  "profile": {
+    "name": "Yaroslav Dimbrovskyi",
+    "email": "yarikdimbrovsky@gmail.com",
+    "mobile_number": "431-554-6575",
+    "designation": "",
+    "total_experience": "",
+    "education": ""
+  },
+  "skills": [
+    "ReactJS",
+    "CSS/SCSS",
+    "React-Router-Dom",
+    "ReactCharts",
+    "Heroicons",
+    "Git",
+    "Docker",
+    "CSS/SCSS",
+    "ReactJS",
+    "React-Router-Dom",
+    "Redux Toolkit",
+    "Heroicons",
+    "Figma",
+    "Docker",
+    "JavaScript/TypeScript",
+    "ReactJS",
+    "TypeScript",
+    "Redux Toolkit",
+    "ReactFlow",
+    "Figma",
+    "wow.js",
+    "JavaScript/TypeScript",
+    "HTML",
+    "TypeScript",
+    "Axios"
+  ],
+  "company_names": [],
+  "summary": {
+    "ai_summary": "",
+    "ai_strengths": []
+  },
+  "experiences": [],
+  "user_email": "nick"
+}
