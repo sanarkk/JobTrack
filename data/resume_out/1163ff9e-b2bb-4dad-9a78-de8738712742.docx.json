@@ -1,0 +1,23 @@
+{
+  "source": {
+    "file_name": "1163ff9e-b2bb-4dad-9a78-de8738712742.docx",
+    "file_path": "C:\\Users\\nchud\\Projects\\JobTrack\\data\\resume_in\\1163ff9e-b2bb-4dad-9a78-de8738712742.docx",
+    "extension": ".docx"
+  },
+  "profile": {
+    "name": "",
+    "email": "",
+    "mobile_number": "",
+    "designation": "",
+    "total_experience": "",
+    "education": ""
+  },
+  "skills": [],
+  "company_names": [],
+  "summary": {
+    "ai_summary": "",
+    "ai_strengths": []
+  },
+  "experiences": [],
+  "user_email": "string"
+}

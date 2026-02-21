@@ -1,0 +1,105 @@
+{
+  "source": {
+    "file_name": "b96e1b00-af5a-408b-9d47-5cbb0f304035.pdf",
+    "file_path": "C:\\Users\\nchud\\Projects\\JobTrack\\data\\resume_in\\b96e1b00-af5a-408b-9d47-5cbb0f304035.pdf",
+    "extension": ".pdf"
+  },
+  "profile": {
+    "name": "MYKOLA CHUDAK",
+    "email": "nchudak2004@gmail.com",
+    "mobile_number": "+1 (416) 717-9722",
+    "designation": "",
+    "total_experience": "2 years 1 month",
+    "education": "[{'institution': 'University of Manitoba', 'degree': \"Bachelor's, Computer Science\", 'year': '2023'}, {'institution': 'Taras Shevchenko National University of Kyiv', 'degree': \"Bachelor's, Economics\", 'year': '2023'}]"
+  },
+  "skills": [
+    "Azure Data Factory",
+    "Azure Data Lake",
+    "LogicApps",
+    "Databricks",
+    "AWS S3",
+    "AWS DynamoDB",
+    "AWS Lambda",
+    "AWS RDS",
+    "Python (Numpy, Pandas, ScikitLearn, Matplotlib, DSA)",
+    "Java",
+    "Spark (PySpark)",
+    "Linux (Bash scripting)",
+    "Databases (MySQL, PostgreSQL)"
+  ],
+  "company_names": [
+    "SIS LLC",
+    "SIS LLC",
+    "DataRoot",
+    "SIS LLC",
+    "SIS LLC",
+    "StockTrack"
+  ],
+  "summary": {
+    "ai_summary": "Data Migration Lead, Data Engineer, Senior Business Analyst",
+    "ai_strengths": [
+      "Data Migration",
+      "Machine Learning",
+      "Project Management"
+    ]
+  },
+  "experiences": [
+    {
+      "designation": "Data Migration Lead",
+      "company": "SIS LLC",
+      "start_date": "2023-04",
+      "end_date": "2023-04",
+      "job_description": "Led a data migration team of 2–4 members across multiple end-to-end D365 Finance & Operations implementations for mid-size enterprises"
+    },
+    {
+      "designation": "Data Engineer",
+      "company": "SIS LLC",
+      "start_date": "2024-04",
+      "end_date": "Present",
+      "job_description": "Developed scalable ELT pipelines and PySpark transformation scripts to automate data migration workflows from Azure Data Lake to D365"
+    },
+    {
+      "designation": "Senior Business Analyst",
+      "company": "SIS LLC",
+      "start_date": "2023-02",
+      "end_date": "2023-02",
+      "job_description": "Managed delivery lifecycle via Azure DevOps"
+    },
+    {
+      "designation": "Business Analyst",
+      "company": "SIS LLC",
+      "start_date": "2022-06",
+      "end_date": "2022-06",
+      "job_description": "Drafted Functional Design Documents for custom features, ensuring alignment with user requirements and development feasibility"
+    },
+    {
+      "designation": "Data Science Trainee",
+      "company": "DataRoot",
+      "start_date": "2022-06",
+      "end_date": "2022-06",
+      "job_description": "Unsupervised learning techniques via RESTful APIs using MVC architecture"
+    },
+    {
+      "designation": "Senior Business Analyst",
+      "company": "SIS LLC",
+      "start_date": "2022-01",
+      "end_date": "2022-05",
+      "job_description": "Managed delivery lifecycle via Azure DevOps"
+    },
+    {
+      "designation": "Business Analyst",
+      "company": "SIS LLC",
+      "start_date": "2021-01",
+      "end_date": "2021-06",
+      "job_description": "Drafted Functional Design Documents for custom features, ensuring alignment with user requirements and development feasibility"
+    },
+    {
+      "designation": "Data Science Trainee",
+      "company": "DataRoot",
+      "start_date": "2021-01",
+      "end_date": "2021-01",
+      "job_description": "Unsupervised learning techniques via RESTful APIs using MVC architecture"
+    }
+  ],
+  "user_email": "nick"
+}
