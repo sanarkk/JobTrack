@@ -14,14 +14,12 @@ class CandidateResume(Base):
         server_default=text("gen_random_uuid()"),
     )
 
-    user_id = Column(UUID(as_uuid=True), nullable=True)
-
     file_name = Column(Text, nullable=False)
     file_path = Column(Text, nullable=True)
     extension = Column(Text, nullable=True)
 
     profile_name = Column(Text, nullable=True)
-    email = Column(Text, nullable=True)
+    user_email = Column(Text, nullable=True)
     mobile_number = Column(Text, nullable=True)
     designation = Column(Text, nullable=True)
     total_experience = Column(Text, nullable=True)
