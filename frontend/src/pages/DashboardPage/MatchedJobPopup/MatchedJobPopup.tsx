@@ -21,9 +21,21 @@ interface MatchedJobPopupProps {
         hash: string;
     };
     onClose: () => void;
+    variant: "dashboard" | "saved";
+    isSaved: boolean;
+    onSave?: () => void;
+    onDelete?: () => void;
+
 }
 
-const MatchedJobPopup = ({ job, onClose }: MatchedJobPopupProps) => {
+const MatchedJobPopup = ({
+                                   job,
+                                   onClose,
+                                   variant,
+                                   isSaved,
+                                   onSave,
+                                   onDelete,
+                               }: MatchedJobPopupProps) => {
 
     const hasSalary =
         job.yearly_min_compensation > 0 &&
@@ -61,7 +73,24 @@ const MatchedJobPopup = ({ job, onClose }: MatchedJobPopupProps) => {
                     </div>
                     <div className={styles.btns}>
                         <a href={job.apply_url} target="_blank" className={styles.detailsBtn}>Apply</a>
-                        <button className={styles.saveBtn}>Save</button>
+                        {variant === "dashboard" && (
+                            <button
+                                className={styles.saveBtn}
+                                onClick={onSave}
+                                disabled={isSaved}
+                            >
+                                {isSaved ? "Saved ✓" : "Save"}
+                            </button>
+                        )}
+
+                        {variant === "saved" && (
+                            <button
+                                className={styles.deleteBtn}
+                                onClick={onDelete}
+                            >
+                                Delete
+                            </button>
+                        )}
                     </div>
                 </div>
                 <div className={styles.description}>
