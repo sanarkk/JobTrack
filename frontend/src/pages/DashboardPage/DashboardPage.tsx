@@ -1,10 +1,24 @@
 import { useState } from "react";
 import NoResumePage from "./NoResumePage/NoResumePage";
 import styles from "./DashboardPage.module.scss";
-import MatchedJobCard from "./MatchedJobCard.tsx";
+import MatchedJobCard from "./MatchedJobCard/MatchedJobCard.tsx";
+import MatchedJobPopup from "./MatchedJobPopup/MatchedJobPopup.tsx";
+
+interface MatchedJob {
+    title: string,
+    shortDescription: string,
+    companyName: string,
+    location: string,
+    onSite: boolean,
+    skills: string[],
+    salary: string,
+    matchRate: number,
+}
 
 const DashboardPage = () => {
     const [hasResume, setHasResume] = useState(true);
+    const [selectedJob, setSelectedJob] = useState<MatchedJob | null>(null);
+
 
     const matchedJobs = [
         {
@@ -93,10 +107,13 @@ const DashboardPage = () => {
                     </div>
                     <div className={styles.matchedJobs}>
                         {matchedJobs.map((job, index) => (
-                            <MatchedJobCard job={job} index={index} />
+                            <MatchedJobCard job={job} index={index} onViewDetails={() => setSelectedJob(job)}/>
                         ))}
                     </div>
                 </div>
+            )}
+            {selectedJob && (
+                <MatchedJobPopup job={selectedJob} onClose={() => setSelectedJob(null)} />
             )}
         </div>
     );
