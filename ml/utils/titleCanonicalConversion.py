@@ -45,9 +45,11 @@ import joblib
 from sklearn.svm import LinearSVC
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-MODEL_DIR = "models"
-MODEL_PATH = f"{MODEL_DIR}/svm_model.pkl"
-VECTORIZER_PATH = f"{MODEL_DIR}/vectorizer.pkl"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_DIR = os.path.join(BASE_DIR, "models")
+
+MODEL_PATH = os.path.join(MODEL_DIR, "svm_model.pkl")
+VECTORIZER_PATH = os.path.join(MODEL_DIR, "vectorizer.pkl")
 
 def train_job_title_model(csv_path):
     os.makedirs(MODEL_DIR, exist_ok=True)
