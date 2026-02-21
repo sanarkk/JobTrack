@@ -35,9 +35,6 @@ async def get_all_positions(db: Session = Depends(get_db)):
 @router.get("/get_relevant_positions", response_model=list[PositionSchemaMatching])
 async def get_relevant_positions(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
     user_email = get_email_from_token(token)
-
-    user_email = "nchudak2004@gmail.com"
-
     results = (
         db.query(Position, ResumeJobMatch.matching_rate)
         .join(
