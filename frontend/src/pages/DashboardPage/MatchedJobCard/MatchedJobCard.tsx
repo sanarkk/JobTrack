@@ -15,9 +15,10 @@ interface MatchedJob {
 interface MatchedJobCardProps {
     job: MatchedJob;
     index: number;
+    onViewDetails?: () => void;
 }
 
-const MatchedJobCard = ({job, index}: MatchedJobCardProps) => {
+const MatchedJobCard = ({job, index, onViewDetails}: MatchedJobCardProps) => {
     return (
         <div className={styles.job} key={index}>
             <div className={styles.mainInfo}>
@@ -25,7 +26,6 @@ const MatchedJobCard = ({job, index}: MatchedJobCardProps) => {
                     <div className={styles.titleInfo}>
                         <span className={styles.title}>{job.title}</span>
                         <span className={styles.matchRate}>{job.matchRate}% match</span>
-
                     </div>
                     <div className={styles.companyInfo}>
                         <span className={styles.companyName}>{job.companyName}</span>
@@ -49,7 +49,7 @@ const MatchedJobCard = ({job, index}: MatchedJobCardProps) => {
                 </div>
             </div>
             <div className={styles.btns}>
-                <button className={styles.detailsBtn}>View details</button>
+                <button onClick={onViewDetails} className={styles.detailsBtn}>View details</button>
                 <button className={styles.saveBtn}>Save</button>
             </div>
         </div>
