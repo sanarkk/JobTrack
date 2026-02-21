@@ -1,10 +1,9 @@
-from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.api.user_api import router as user_router
-from backend.api.positions_api import router as positions_router
+import fastapi
+from parser.resume.resume_processor import parser_router
 
-app = FastAPI()
 
+app = fastapi.FastAPI()
 
 origins = [
     "http://localhost:3000",
@@ -20,5 +19,4 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(user_router)
-app.include_router(positions_router)
+app.include_router(parser_router, prefix="/parse_resume", tags=["parser"])
