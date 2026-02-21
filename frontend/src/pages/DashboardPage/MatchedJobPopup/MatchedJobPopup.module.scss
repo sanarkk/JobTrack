@@ -211,6 +211,23 @@
         border-color: #d1d5db;
       }
     }
+
+    .deleteBtn {
+      background-color: #f87171;
+      width: 200px;
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.2s ease;
+
+      &:hover {
+        background-color: #ef4444;
+      }
+    }
   }
 
   &:hover {
