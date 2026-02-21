@@ -26,7 +26,6 @@ def ingest_json_file(json_path):
         extension=source.get("extension") or path.suffix,
 
         profile_name=profile.get("name"),
-        email=profile.get("email"),
         mobile_number=profile.get("mobile_number"),
         designation=profile.get("designation"),
         total_experience=profile.get("total_experience"),
