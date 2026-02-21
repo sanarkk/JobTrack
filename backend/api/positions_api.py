@@ -44,3 +44,55 @@ async def upload_resume(token: str = Depends(oauth2_scheme), file: UploadFile = 
     response = requests.post("http://host.docker.internal:8002/parse_resume/resume/", files=files, data=data)
 
     return response.json()
+
+
+@router.post("/save_position")
+async def save_position(position_id: str, token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
+    user_email = get_email_from_token(token)
+    new_saved_job = SavedJob(user_email=user_email, job_id=position_id)
+    db.add(new_saved_job)
+    db.commit()
+    db.refresh(new_saved_job)
+    return {"message": "Position saved successfully", "id": str(new_saved_job.id)}
+
+
+@router.get("/get_one/{position_id}")
+async def get_one_position(position_id: str, token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
+    user_email = get_email_from_token(token)
+
+    saved_job = (
+        db.query(SavedJob)
+        .filter(SavedJob.job_id == position_id, SavedJob.user_email == user_email)
+        .first()
+    )
+
+    if not saved_job:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Saved job not found"
+        )
+
+    return {
+        "id": str(saved_job.id),
+        "user_email": saved_job.user_email,
+        "job_id": saved_job.job_id
+    }
+
+@router.get("/get_all_saved_jobs")
+def get_all_saved_jobs(
+    token: str = Depends(oauth2_scheme),
+    db: Session = Depends(get_db)
+):
+    user_email = get_email_from_token(token)
+    saved_jobs = db.query(SavedJob).filter(SavedJob.user_email == user_email).all()
+
+    result = [
+        {
+            "id": str(job.id),
+            "user_email": job.user_email,
+            "job_id": job.job_id
+        }
+        for job in saved_jobs
+    ]
+
+    return result
