@@ -209,6 +209,7 @@ marimo/_lsp/
 __marimo__/
 
 # Ignore datasets
-ml/datasets/
+.ml/datasets/
 *.csv
-ml/models/*.gguf
+.ml/models/*.gguf
+*.gguf
