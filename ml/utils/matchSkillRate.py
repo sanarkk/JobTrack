@@ -37,27 +37,27 @@ def match_skills_contextual(resume_skills, job_skills):
     return (sum(scores) / len(scores)) * 100
 
 #testing
-resume_skills = [
-    "Python",
-    "Machine Learning",
-    "Data Analysis",
-    "SQL",
-    "TensorFlow",
-    "Deep Learning",
-    "Pandas",
-    "Neural Networks"
-]
+# resume_skills = [
+#     "Python",
+#     "Machine Learning",
+#     "Data Analysis",
+#     "SQL",
+#     "TensorFlow",
+#     "Deep Learning",
+#     "Pandas",
+#     "Neural Networks"
+# ]
 
-job_skills = [
-    "Python",
-    "SQL",
-    "Data Engineering",
-    "Deep Learning",
-    "Machine Learning",
-    "Model Deployment"
-]
+# job_skills = [
+#     "Python",
+#     "SQL",
+#     "Data Engineering",
+#     "Deep Learning",
+#     "Machine Learning",
+#     "Model Deployment"
+# ]
 
-match_skills_train(resume_skills, job_skills)
+# match_skills_train(resume_skills, job_skills)
 
 # print(match_skills_processing(resume_skills, job_skills))
 # print(match_skills_contextual(resume_skills, job_skills))
