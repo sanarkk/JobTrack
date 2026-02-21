@@ -31,10 +31,10 @@ async def upload_resume(file: UploadFile = File(...)):
     if extension not in ALLOWED_EXTENSIONS:
         raise HTTPException(status_code=400, detail="Invalid file type")
 
-    file.file.seek(0)  # reset pointer to start
+    file.file.seek(0)
     files = {"file": (file.filename, file.file, file.content_type)}
-    response = requests.post("http://jobtrack_data:8002/parse_resume/resume/", files=files)
+    response = requests.post("http://host.docker.internal:8002/parse_resume/resume/", files=files)
 
     return {
-        response
+        response.json()
     }
