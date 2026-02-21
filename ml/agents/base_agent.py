@@ -1,5 +1,7 @@
+import os
 from pathlib import Path
 from llama_cpp import Llama
+from ml.models.get_model import download_model
 
 # Global variable for Singleton Pattern
 LLM_MODEL = None
@@ -20,7 +22,11 @@ class BaseAgent:
         if LLM_MODEL is None:
             try:
                 model_path = MODEL_DIR / MODEL_FILENAME
-                print(f"Loading Base AI Model: {model_path.name}...")
+                if not model_path.exists():
+                    print(f"Model gguf does not exist - Loading model from WEB")
+                    download_model()
+
+                print(f"Spinning up Base AI Model: {model_path.name}...")
                 
                 # Load Model
                 LLM_MODEL = Llama(

@@ -41,7 +41,7 @@ class ExtractionAgent(BaseAgent):
         response_content = self.inference(
             system_prompt,
             user_prompt,
-            max_tokens=5000,
+            max_tokens=10000,
             response_format={"type": "json_object"},
             temperature=0.0,
         )

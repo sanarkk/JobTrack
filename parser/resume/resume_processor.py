@@ -1,8 +1,8 @@
 import argparse
 import json
 from pathlib import Path
-from typing import Any, Dict, List
 
+from backend.database.ingest_resumes import ingest_json_file
 from ml.agents.extraction_agent import ExtractionAgent
 from .text_from_file import extract_text_by_file_type
 
@@ -87,9 +87,6 @@ def main():
 
     in_dir = Path(__file__).resolve().parents[2] / "data" / "resume_in"
     out_dir = Path(__file__).resolve().parents[2] / "data" / "resume_out"
-
-    print(in_dir)
-    print(out_dir)
     
     result = process_cv(in_dir / resume_name)
     output_json = json.dumps(result, indent=2, ensure_ascii=False)
@@ -101,6 +98,8 @@ def main():
 
     print(f"Saved normalized CV JSON to {out_path.resolve()}")
 
+    ingest_result = ingest_json_file(out_path)
+    print(f"Ingested resume JSON to Supabase: {ingest_result}")
 
 if __name__ == "__main__":
     main()
