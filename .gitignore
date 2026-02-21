@@ -212,3 +212,8 @@ __marimo__/
 # Ignore datasets
 /ml/datasets/
 *.csv
+
+.ml/datasets/
+*.csv
+.ml/models/*.gguf
+*.gguf
