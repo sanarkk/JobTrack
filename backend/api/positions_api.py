@@ -96,3 +96,28 @@ def get_all_saved_jobs(
     ]
 
     return result
+
+
+@router.delete("/delete/{position_id}")
+def delete_saved_job(
+    position_id: str,
+    token: str = Depends(oauth2_scheme),
+    db: Session = Depends(get_db)
+):
+    user_email = get_email_from_token(token)
+    saved_job = (
+        db.query(SavedJob)
+        .filter(SavedJob.job_id == position_id, SavedJob.user_email == user_email)
+        .first()
+    )
+
+    if not saved_job:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Saved job not found"
+        )
+
+    db.delete(saved_job)
+    db.commit()
+
+    return {"message": "Saved job deleted successfully", "id": str(saved_job.id)}
