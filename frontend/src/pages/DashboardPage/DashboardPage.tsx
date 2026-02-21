@@ -21,6 +21,7 @@ interface MatchedJob {
     company_name: string;
     apply_url: string;
     source_file: string;
+    matching_rate: number;
     hash: string;
 }
 
@@ -63,12 +64,21 @@ const DashboardPage = () => {
 
         const fetchJobs = async () => {
             try {
-                const res = await axios.get("http://localhost:8001/all/");
+                const res = await axios.get(
+                    "http://localhost:8001/get_relevant_positions/",
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${localStorage.getItem("access_token") || ""}`,
+                        },
+                    }
+                );
                 setMatchedJobs(res.data);
             } catch (error) {
                 console.log(error);
             }
         };
+
 
         fetchJobs();
     }, [hasResume]);
@@ -120,20 +130,23 @@ const DashboardPage = () => {
                                 Personalized recommendations based on your resume and preferences
                             </p>
                         </div>
+                        {matchedJobs.length !== 0 ?
+                            (
+                                <div className={styles.matchedJobs}>
+                                    {matchedJobs.map((job, index) => (
+                                        <MatchedJobCard
+                                            key={job.id}
+                                            job={job}
+                                            index={index}
+                                            isSaved={savedJobIds.includes(job.id)}
+                                            variant="dashboard"
+                                            onSaveSuccess={handleSaveSuccess}
+                                            onViewDetails={() => setSelectedJob(job)}
+                                        />
+                                    ))}
+                                </div>
+                            ): <h3>There are no jobs that fit your resume.</h3>}
 
-                        <div className={styles.matchedJobs}>
-                            {matchedJobs.map((job, index) => (
-                                <MatchedJobCard
-                                    key={job.id}
-                                    job={job}
-                                    index={index}
-                                    isSaved={savedJobIds.includes(job.id)}
-                                    variant="dashboard"
-                                    onSaveSuccess={handleSaveSuccess}
-                                    onViewDetails={() => setSelectedJob(job)}
-                                />
-                            ))}
-                        </div>
                     </div>
 
                     {selectedJob && (

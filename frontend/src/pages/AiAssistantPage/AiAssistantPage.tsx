@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Sparkles, Send } from "lucide-react";
-import ReactMarkdown from "react-markdown"; // ✅ import ReactMarkdown
+import ReactMarkdown from "react-markdown";
 import styles from "./AiAssistantPage.module.scss";
 
 interface Message {
@@ -76,7 +76,7 @@ const AiAssistantPage = () => {
                 ...prev,
                 {
                     id: Date.now() + 2,
-                    text: "⚠️ Something went wrong. Try again.",
+                    text: "Something went wrong. Try again.",
                     sender: "assistant",
                     timestamp: new Date(),
                 },

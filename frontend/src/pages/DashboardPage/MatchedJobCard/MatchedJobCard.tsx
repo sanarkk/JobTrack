@@ -18,6 +18,7 @@ interface MatchedJob {
     yearly_max_compensation: number;
     company_name: string;
     apply_url: string;
+    matching_rate: number;
     source_file: string;
     hash: string;
 }
@@ -88,7 +89,18 @@ const MatchedJobCard = ({
                 <div className={styles.info}>
                     <div className={styles.titleInfo}>
                         <span className={styles.title}>{job.job_title}</span>
-                        <span className={styles.matchRate}>95% match</span>
+                        {variant === "saved" ? "" : (<span
+                            className={`${styles.matchRate} ${
+                                job.matching_rate >= 90
+                                    ? styles.high
+                                    : job.matching_rate >= 80
+                                        ? styles.medium
+                                        : styles.low
+                            }`}
+                        >
+                        {Math.floor(job.matching_rate)}% match
+                        </span>)}
+
                     </div>
 
                     <div className={styles.companyInfo}>

@@ -28,11 +28,25 @@
 
         .matchRate {
           font-size: 14px;
-          font-weight: 500;
-          color: #008236;
-          background-color: #dcfce7;
           padding: 6px 10px;
           border-radius: 16px;
+          font-weight: 500;
+          display: inline-block;
+
+          &.high {
+            background-color: #d1fae5;
+            color: #047857;
+          }
+
+          &.medium {
+            background-color: #dbeafe;
+            color: #1d4ed8;
+          }
+
+          &.low {
+            background-color: #fef9c3;
+            color: #b45309;
+          }
         }
       }
 

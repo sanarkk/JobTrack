@@ -21,6 +21,7 @@ interface SavedJob {
     company_name: string;
     apply_url: string;
     source_file: string | null;
+    matching_rate: number;
     hash: string;
 }
 
