@@ -9,5 +9,6 @@
   width: 100%;
   flex-direction: column;
   flex: 0 0 80%;
+  overflow-y: auto;
   background: linear-gradient(to bottom right, #f8fafc, rgba(239, 246, 255, 0.3), #f1f5f9);
 }
