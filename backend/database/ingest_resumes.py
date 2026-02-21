@@ -11,7 +11,7 @@ def load_json(json_path):
 
 
 def ingest_json_file(json_path):
-    path = Path(json_path)
+    path = Path(str(json_path) + ".json")
     payload = load_json(path)
 
     source = payload.get("source", {})

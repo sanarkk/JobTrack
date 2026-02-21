@@ -1,11 +1,10 @@
 import argparse
 import json
 import uuid
-from fastapi import APIRouter, UploadFile, File
+from fastapi import APIRouter, UploadFile, File, Form
 import shutil
 from pathlib import Path
 from pathlib import Path
-
 from backend.database.ingest_resumes import ingest_json_file
 from ml.agents.extraction_agent import ExtractionAgent
 from .text_from_file import extract_text_by_file_type
@@ -85,7 +84,7 @@ def process_cv(file_path):
     return normalize_resume_schema(raw_output, path)
 
 @parser_router.post("/resume/")
-async def main(file: UploadFile = File(...)):
+async def main(user_email: str = Form(...), file: UploadFile = File(...)):
     # parser = argparse.ArgumentParser(description="Process CV into a stable JSON schema.")
     # parser.add_argument("resume_file", help="Path to resume file (.pdf or .docx)")
     # args = parser.parse_args()
@@ -113,17 +112,19 @@ async def main(file: UploadFile = File(...)):
 
     output_json = json.dumps(result, indent=2, ensure_ascii=False)
 
-    print(f"Saved normalized CV JSON to {out_dir / unique_name.resolve()}")
+    out_path = out_dir / f"{unique_name}.json"
+
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(output_json)
+
+    print(f"Saved normalized CV JSON to {(out_dir / unique_name).resolve()}")
     ingest_result = ingest_json_file(out_dir / unique_name)
 
     print(f"Ingested resume JSON to Supabase: {ingest_result}")
 
-    return output_json
+    return result
 
-    # out_path = out_dir / f"{resume_name}.json"
-    #
-    # with open(out_path, "w", encoding="utf-8") as f:
-    #     f.write(output_json)
+
 
 
 if __name__ == "__main__":
