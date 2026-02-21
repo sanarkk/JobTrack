@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Sparkles, Send } from "lucide-react";
+import ReactMarkdown from "react-markdown"; // ✅ import ReactMarkdown
 import styles from "./AiAssistantPage.module.scss";
 
 interface Message {
@@ -62,7 +63,9 @@ const AiAssistantPage = () => {
 
             const aiMessage: Message = {
                 id: Date.now() + 1,
-                text: typeof data === "string" ? data : JSON.stringify(data),
+                text: typeof data === "string"
+                    ? data
+                    : data.reply ?? JSON.stringify(data),
                 sender: "assistant",
                 timestamp: new Date(),
             };
@@ -115,13 +118,17 @@ const AiAssistantPage = () => {
                                         : styles.messageAssistant
                                 }
                             >
-                                <p>{message.text}</p>
+                                {message.sender === "assistant" ? (
+                                    <ReactMarkdown>{message.text}</ReactMarkdown>
+                                ) : (
+                                    <p>{message.text}</p>
+                                )}
                                 <span>
-                  {message.timestamp.toLocaleTimeString([], {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                  })}
-                </span>
+                                    {message.timestamp.toLocaleTimeString([], {
+                                        hour: "2-digit",
+                                        minute: "2-digit",
+                                    })}
+                                </span>
                             </div>
                         </div>
                     ))}

@@ -25,11 +25,42 @@ interface ResumeResponse {
 
 const ResumePage = () => {
     const inputRef = useRef<HTMLInputElement>(null);
-    const [file, setFile] = useState<File | null>(null);
+
+    const [resumeExists, setResumeExists] = useState<boolean | null>(null);
     const [resumeData, setResumeData] = useState<ResumeResponse | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        const checkResumeExists = async () => {
+            try {
+                const res = await axios.post(
+                    "http://0.0.0.0:8001/resume_exists/",
+                    {},
+                    {
+                        headers: {
+                            Authorization: `Bearer ${
+                                localStorage.getItem("access_token") || ""
+                            }`,
+                        },
+                    }
+                );
+
+                setResumeExists(res.data.exists);
+            } catch (error) {
+                console.error("Resume exists check failed:", error);
+                setResumeExists(false);
+            }
+        };
+
+        checkResumeExists();
+    }, []);
+
+    useEffect(() => {
+        if (resumeExists !== true) {
+            setLoading(false);
+            return;
+        }
+
         const fetchResume = async () => {
             try {
                 const res = await axios.get(
@@ -52,17 +83,26 @@ const ResumePage = () => {
         };
 
         fetchResume();
-    }, []);
+    }, [resumeExists]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const selected = e.target.files?.[0];
         if (!selected) return;
-        setFile(selected);
         console.log("Selected file:", selected);
     };
 
     if (loading) {
-        return <div className={styles.wrapper}>Loading resume...</div>;
+        return <div className={styles.wrapper}>Loading...</div>;
+    }
+
+    if (!resumeExists) {
+        return (
+            <div className={styles.wrapper}>
+                <div className={styles.emptyState}>
+                    No resume uploaded yet.
+                </div>
+            </div>
+        );
     }
 
     if (!resumeData) {
@@ -96,7 +136,7 @@ const ResumePage = () => {
             </div>
 
             {resumeData.ai_summary && (
-                <div className={`${styles.container}`}>
+                <div className={styles.container}>
                     <p className={styles.sectionTitle}>Professional Summary</p>
                     <p className={styles.summaryText}>
                         {resumeData.ai_summary}
