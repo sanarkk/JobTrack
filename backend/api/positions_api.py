@@ -85,16 +85,36 @@ def get_all_saved_jobs(
     db: Session = Depends(get_db)
 ):
     user_email = get_email_from_token(token)
-    saved_jobs = db.query(SavedJob).filter(SavedJob.user_email == user_email).all()
 
-    result = [
-        {
-            "id": str(job.id),
-            "user_email": job.user_email,
-            "job_id": job.job_id
-        }
-        for job in saved_jobs
-    ]
+    saved_jobs = (
+        db.query(SavedJob, Position)
+        .join(Position, SavedJob.job_id == Position.id)
+        .filter(SavedJob.user_email == user_email)
+        .all()
+    )
+
+    result = []
+    for saved_job, position in saved_jobs:
+        result.append({
+            "saved_id": str(saved_job.id),
+            "job_id": str(position.id),
+            "user_email": saved_job.user_email,
+            "job_title": position.job_title,
+            "job_category": position.job_category,
+            "seniority_level": position.seniority_level,
+            "requirements_summary": position.requirements_summary,
+            "technical_tools": position.technical_tools,
+            "formatted_workplace_location": position.formatted_workplace_location,
+            "province": position.province,
+            "commitment": position.commitment,
+            "workplace_type": position.workplace_type,
+            "yearly_min_compensation": position.yearly_min_compensation,
+            "yearly_max_compensation": position.yearly_max_compensation,
+            "company_name": position.company_name,
+            "apply_url": position.apply_url,
+            "source_file": position.source_file,
+            "hash": position.hash
+        })
 
     return result
 
