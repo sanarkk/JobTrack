@@ -12,7 +12,6 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_RAW_DIR = PROJECT_ROOT / "data" / "raw"
 DEFAULT_PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
 
-
 def build_jobs_dataframe(raw_dir=DEFAULT_RAW_DIR):
     raw_path = Path(raw_dir)
     rows = []
@@ -49,7 +48,7 @@ def build_jobs_dataframe(raw_dir=DEFAULT_RAW_DIR):
     df[["yearly_min_compensation", "yearly_max_compensation"]] = df[
         ["yearly_min_compensation", "yearly_max_compensation"]
     ].fillna(0)
-    
+
     return df, source_files
 
 
