@@ -14,7 +14,7 @@ class CandidateResume(Base):
         server_default=text("gen_random_uuid()"),
     )
 
-    user_id = Column(UUID(as_uuid=True), nullable=True)
+    user_email = Column(Text, nullable=False)
 
     file_name = Column(Text, nullable=False)
     file_path = Column(Text, nullable=True)
