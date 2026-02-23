@@ -45,9 +45,11 @@ import joblib
 from sklearn.svm import LinearSVC
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-MODEL_DIR = "models"
-MODEL_PATH = f"{MODEL_DIR}/svm_model.pkl"
-VECTORIZER_PATH = f"{MODEL_DIR}/vectorizer.pkl"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_DIR = os.path.join(BASE_DIR, "models")
+
+MODEL_PATH = os.path.join(MODEL_DIR, "svm_model.pkl")
+VECTORIZER_PATH = os.path.join(MODEL_DIR, "vectorizer.pkl")
 
 def train_job_title_model(csv_path):
     os.makedirs(MODEL_DIR, exist_ok=True)
@@ -74,24 +76,24 @@ def predict_canonical_title(to_check_title):
     return clf.predict(X)[0]
 
 # training
-csv_path = "../datasets/job_title_canonical_dataset.csv"
+# csv_path = "../datasets/job_title_canonical_dataset.csv"
 # train_job_title_model(csv_path=csv_path)
 
 # testing
-TEST_TITLES = [
-    "Senior Data Eng.",
-    "AI Dev",
-    "Mechanical Eng Specialist",
-    "RN Nurse",
-    "Cloud Solutions Architect",
-    "Junior Accountant",
-    "Marketing Lead",
-    "Software Dev Intern",
-    "Electrical Eng Technician",
-    "Content Creator Strategist"
-]
+# TEST_TITLES = [
+#     "Senior Data Eng.",
+#     "AI Dev",
+#     "Mechanical Eng Specialist",
+#     "RN Nurse",
+#     "Cloud Solutions Architect",
+#     "Junior Accountant",
+#     "Marketing Lead",
+#     "Software Dev Intern",
+#     "Electrical Eng Technician",
+#     "Content Creator Strategist"
+# ]
 
-for title in TEST_TITLES:
-    predicted_title = predict_canonical_title(title)
-    print("\nActual: ", title)
-    print("Predicted: ", predicted_title)
+# for title in TEST_TITLES:
+#     predicted_title = predict_canonical_title(title)
+#     print("\nActual: ", title)
+#     print("Predicted: ", predicted_title)

@@ -1,11 +1,15 @@
 import argparse
 import json
+import uuid
+from fastapi import APIRouter, UploadFile, File, Form
+import shutil
 from pathlib import Path
-from typing import Any, Dict, List
-
+from pathlib import Path
+from backend.database.ingest_resumes import ingest_json_file
 from ml.agents.extraction_agent import ExtractionAgent
 from .text_from_file import extract_text_by_file_type
 
+parser_router = APIRouter()
 
 def _as_list(value):
     if value is None:
@@ -78,28 +82,49 @@ def process_cv(file_path):
     raw_output = agent.extract_entities(extracted_text)
     return normalize_resume_schema(raw_output, path)
 
+@parser_router.post("/resume/")
+async def main(user_email: str = Form(...), file: UploadFile = File(...)):
+    # parser = argparse.ArgumentParser(description="Process CV into a stable JSON schema.")
+    # parser.add_argument("resume_file", help="Path to resume file (.pdf or .docx)")
+    # args = parser.parse_args()
+    # resume_name = args.resume_file
+    extension = Path(file.filename).suffix.lower()
 
-def main():
-    parser = argparse.ArgumentParser(description="Process CV into a stable JSON schema.")
-    parser.add_argument("resume_file", help="Path to resume file (.pdf or .docx)")
-    args = parser.parse_args()
-    resume_name = args.resume_file
+    BASE_DIR = Path(__file__).resolve().parents[2]
+    UPLOAD_DIR = BASE_DIR / "data" / "resume_in"
+    ALLOWED_EXTENSIONS = {".pdf", ".docx"}
+
+    if extension not in ALLOWED_EXTENSIONS:
+        raise HTTPException(status_code=400, detail="Invalid file type")
+
+    unique_name = f"{uuid.uuid4()}{extension}"
+    file_path = UPLOAD_DIR / unique_name
+
+
+    with file_path.open("wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
 
     in_dir = Path(__file__).resolve().parents[2] / "data" / "resume_in"
     out_dir = Path(__file__).resolve().parents[2] / "data" / "resume_out"
-
-    print(in_dir)
-    print(out_dir)
     
-    result = process_cv(in_dir / resume_name)
+    result = process_cv(in_dir / unique_name)
+    result["user_email"] = user_email
+
     output_json = json.dumps(result, indent=2, ensure_ascii=False)
 
-    out_path = out_dir / f"{resume_name}.json"
+    out_path = out_dir / f"{unique_name}.json"
 
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(output_json)
 
-    print(f"Saved normalized CV JSON to {out_path.resolve()}")
+    print(f"Saved normalized CV JSON to {(out_dir / unique_name).resolve()}")
+    ingest_result = ingest_json_file(out_dir / unique_name)
+
+    print(f"Ingested resume JSON to Supabase: {ingest_result}")
+
+    return result
+
+
 
 
 if __name__ == "__main__":

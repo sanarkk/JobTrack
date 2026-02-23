@@ -2,7 +2,66 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   width: 100%;
   height: 100%;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;
+
+  .info {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+
+    .searchWrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 360px;
+    }
+
+    .searchIcon {
+      position: absolute;
+      left: 12px;
+      color: #6b7280;
+    }
+
+    .searchInput {
+      width: 100%;
+      padding: 10px 12px 10px 36px;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.2s ease;
+
+      &:focus {
+        border-color: #6366f1;
+        box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+      }
+    }
+
+    .title {
+      font-size: 30px;
+      font-weight: 600;
+    }
+
+    .subTitle {
+      font-size: 16px;
+      color: #45556c;
+    }
+  }
+}
+
+.matchedJobs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 28px;
 }

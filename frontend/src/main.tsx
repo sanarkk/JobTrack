@@ -10,6 +10,8 @@ import ResumePage from "./pages/ResumePage/ResumePage.tsx";
 import AiAssistantPage from "./pages/AiAssistantPage/AiAssistantPage.tsx";
 import LoginPage from "./pages/LoginPage/LoginPage.tsx";
 import RegisterPage from "./pages/RegisterPage/RegisterPage.tsx";
+// import MetabaseDashboard from "./components/MetabaseDashboard/MetabaseDashboard.tsx";
+// import StatsPage from "./pages/StatsPage/StatsPage.tsx";
 
 
 
