@@ -45,7 +45,7 @@ const AiAssistantPage = () => {
 
         try {
             const response = await fetch(
-                `http://0.0.0.0:8001/chatbot/send_message_ai/?text=${encodeURIComponent(
+                `http://localhost:8001/chatbot/send_message_ai/?text=${encodeURIComponent(
                     userMessage.text
                 )}`,
                 {

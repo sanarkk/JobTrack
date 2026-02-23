@@ -34,7 +34,7 @@ const ResumePage = () => {
         const checkResumeExists = async () => {
             try {
                 const res = await axios.post(
-                    "http://0.0.0.0:8001/resume_exists/",
+                    "http://localhost:8001/resume_exists/",
                     {},
                     {
                         headers: {
@@ -64,7 +64,7 @@ const ResumePage = () => {
         const fetchResume = async () => {
             try {
                 const res = await axios.get(
-                    "http://0.0.0.0:8001/my_resume/",
+                    "http://localhost:8001/my_resume/",
                     {
                         headers: {
                             Authorization: `Bearer ${

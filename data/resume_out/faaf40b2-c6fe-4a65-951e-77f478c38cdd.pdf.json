@@ -1,0 +1,53 @@
+{
+  "source": {
+    "file_name": "faaf40b2-c6fe-4a65-951e-77f478c38cdd.pdf",
+    "file_path": "C:\\Users\\nchud\\Projects\\JobTrack\\data\\resume_in\\faaf40b2-c6fe-4a65-951e-77f478c38cdd.pdf",
+    "extension": ".pdf"
+  },
+  "profile": {
+    "name": "OLEKSANDR BRATASYUK",
+    "email": "obratasyko@gmail.com",
+    "mobile_number": "+1 (204) 698-9465",
+    "designation": "",
+    "total_experience": "Data Science Intern, Sept 2025 - Dec 2025",
+    "education": "University of Manitoba, May 2024 - Present, B.Sc. Computer Science, minor in Mathematics"
+  },
+  "skills": [
+    "Python",
+    "C++",
+    "Java",
+    "SQL",
+    "Pandas",
+    "NumPy",
+    "scikit-learn",
+    "Google Cloud Platform (GCP)",
+    "MySQL",
+    "PostgreSQL",
+    "Git/GitHub",
+    "Docker",
+    "Linux/Unix",
+    "RESTful APIs",
+    "Agile (Scrum, code reviews)"
+  ],
+  "company_names": [
+    "IG Wealth Management"
+  ],
+  "summary": {
+    "ai_summary": "Motivated Computer Science student with a passion for building meaningful software and analytical solutions. Strong communicator and team player with proven experience in programming, data analysis, and problem-solving. Quick to learn new technologies and contribute effectively in team environments.",
+    "ai_strengths": [
+      "Data Science",
+      "Python",
+      "Agile"
+    ]
+  },
+  "experiences": [
+    {
+      "designation": "Data Science Intern",
+      "company": "IG Wealth Management",
+      "start_date": "Sept 2025",
+      "end_date": "Dec 2025",
+      "job_description": "Analyzed large-scale financial datasets using Python and SQL, supporting data pipelines and ML workflows on GCP and Vertex AI. Designed and maintained datasets, reports, and analytical tools to support business and operational needs. Applied statistical analysis and critical thinking to evaluate model performance. Worked collaboratively in a team environment while practicing Agile methodologies (sprints, stand-ups, code reviews)."
+    }
+  ],
+  "user_email": "nchudak32@gmail.com"
+}
