@@ -38,7 +38,7 @@ const DashboardPage = () => {
         const checkResumeExists = async () => {
             try {
                 const res = await axios.post(
-                    "http://0.0.0.0:8001/resume_exists/",
+                    "http://localhost:8001/resume_exists/",
                     {},
                     {
                         headers: {

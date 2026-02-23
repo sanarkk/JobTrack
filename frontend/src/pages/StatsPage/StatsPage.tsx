@@ -8,7 +8,7 @@ const StatsPage = () => {
     useEffect(() => {
         const fetchToken = async () => {
             try {
-                const res = await fetch("http://0.0.0.0:8001/generate_metabase_token/", {
+                const res = await fetch("http://localhost:8001/generate_metabase_token/", {
                     method: "POST",
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("access_token") || ""}`,

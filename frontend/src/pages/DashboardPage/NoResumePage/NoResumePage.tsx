@@ -28,7 +28,7 @@ const NoResumePage = () => {
             formData.append("file", file);
 
             await axios.post(
-                "http://0.0.0.0:8001/upload_resume",
+                "http://localhost:8001/upload_resume",
                 formData,
                 {
                     headers: {
